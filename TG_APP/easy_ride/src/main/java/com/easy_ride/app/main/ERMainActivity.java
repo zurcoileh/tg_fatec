@@ -89,6 +89,8 @@ public class ERMainActivity extends FragmentActivity {
             selectItem(0);
         }
 
+
+
         //-------------------------------------------------------------//
 
         Firebase.setAndroidContext(this);

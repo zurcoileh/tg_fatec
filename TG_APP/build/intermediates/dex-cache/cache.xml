@@ -72,6 +72,13 @@
         <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-08eb21b4db79fae045170b18bf4b3dbff3d29711.jar" />
     </item>
     <item
+        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\6.1.0\63735f48b82bcd24cdd33821342428252eb1ca5a\butterknife-6.1.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\butterknife-6.1.0-fb23367a2dee0882db0c5819cfd47b1b79915d8b.jar" />
+    </item>
+    <item
         jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
@@ -224,6 +231,13 @@
         revision="21.1.1"
         sha1="997773777cf3904c11d6764fe3b7668538220e49">
         <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-b2023d966357c5ddf63cd9f5924cddb290c44b68.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-699e6f23fbd09d505945e03caaeee9da146a1281.jar" />
     </item>
     <item
         jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\jars\classes.jar"
