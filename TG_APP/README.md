@@ -4,7 +4,7 @@
 
 Primeiros testes usando Firebase e biblioteca Geofire
 
-FIrebase https://www.firebase.com/docs/quickstarts.html
+Firebase https://www.firebase.com/docs/quickstarts.html
 
 Link do serviço de storage na nuvem https://demolocal.firebaseio.com/
 
