@@ -1,4 +1,4 @@
-package com.firebase.easy_ride;
+package com.easy_ride.app.main;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
@@ -10,6 +10,7 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
+import com.firebase.easy_ride.R;
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
@@ -161,4 +162,6 @@ public class ERLocationActivity extends FragmentActivity implements GeoQueryEven
         // radius in km
         this.geoQuery.setRadius(radius/1000);
     }
+
+
 }

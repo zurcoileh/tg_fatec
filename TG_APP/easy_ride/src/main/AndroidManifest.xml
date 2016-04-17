@@ -23,7 +23,14 @@
             android:value="AIzaSyDjw8K1DgTV-fhyOaoW5ms39RQyteNW_RA" />
 
         <activity
-            android:name=".ERLocationActivity"
+            android:name="com.easy_ride.app.main.ERLocationActivity"
+            android:label="@string/app_name" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.easy_ride.app.main.ERLocationActivity" />
+        </activity>
+
+        <activity android:name="com.easy_ride.app.main.ERMainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
