@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ## GeoFire - SF Vehicles Example
 
 ### Setup
@@ -20,3 +21,7 @@ SF Vehicles loads realtime transit data from a
 This sample loads its Firebase and GeoFire dependencies from Maven Central.
 If you modify and build GeoFire locally make sure to update to modify the gradle file to load GeoFire
 either directly or from your local maven repo.
+=======
+# tg_fatec
+projeto carona solidaria para trabalho de graduação no curso tecnológico em banco de dados
+>>>>>>> db36dbc6171ecfd1169bec4dc18caf8b2247a29c
