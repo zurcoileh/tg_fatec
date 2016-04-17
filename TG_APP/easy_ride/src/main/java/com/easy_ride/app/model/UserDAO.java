@@ -2,6 +2,7 @@ package com.easy_ride.app.model;
 
 import android.widget.TextView;
 
+import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -10,6 +11,7 @@ import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Created by Helio on 4/16/2016.
@@ -25,15 +27,55 @@ public class UserDAO {
         this.refConn = refConn;
     }
 
-    public void save(String id, User user){
+    public void save(String id, User user) {
         Firebase saveData = refConn.child(id);
         saveData.setValue(user);
     }
 
-    public void saveLocation(GeoFire geoFire, String email, GeoLocation loc){
+    public void saveLocation(GeoFire geoFire, String email, GeoLocation loc) {
+        geoFire.setLocation(email, loc);
 
-        geoFire.setLocation(email,loc);
+    }
 
+    public void createUser(User user, String password) {
+        refConn.createUser(user.getEmail(), password, new Firebase.ValueResultHandler<Map<String, Object>>() {
+            @Override
+            public void onSuccess(Map<String, Object> result) {
+                System.out.println("Successfully created user account with uid: " + result.get("uid"));
+            }
+
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                // there was an error
+            }
+        });
+    }
+
+    public void login(User user, String password){
+        refConn.authWithPassword(user.getEmail(), password, new Firebase.AuthResultHandler() {
+            @Override
+            public void onAuthenticated(AuthData authData) {
+                System.out.println("User ID: " + authData.getUid() + ", Provider: " + authData.getProvider());
+            }
+
+            @Override
+            public void onAuthenticationError(FirebaseError firebaseError) {
+                // there was an error
+            }
+        });
+    }
+
+    public void delUser(User user, String password){
+        refConn.removeUser(user.getEmail(), password, new Firebase.ResultHandler() {
+            @Override
+            public void onSuccess() {
+                // user removed
+            }
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                // error encountered
+            }
+        });
     }
 
     public void getResultById(String id, final TextView result) {
