@@ -2,7 +2,7 @@
 
 ### TESTES DE GEOLOCALIZAÇÃO 
 
-Primeiros testes usando Firebase e biblioteca Gefire
+Primeiros testes usando Firebase e biblioteca Geofire
 
 FIrebase https://www.firebase.com/docs/quickstarts.html
 
