@@ -1,1 +1,0 @@
-A  relação  é  parPcionada  em  vários  fragmentos   armazenados  em  sites  disPntos  
