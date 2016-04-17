@@ -1,6 +1,6 @@
 #### EASY_RIDE APP
 
-#### TESTES DE GEOLOCALIZAÇÃO 
+##### TESTES DE GEOLOCALIZAÇÃO 
 
 Primeiros testes usando Firebase e biblioteca Geofire
 
