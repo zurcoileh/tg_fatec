@@ -17,7 +17,8 @@
         <item name="colorControlHighlight">@color/white</item>
         <item name="android:textColorHint">@color/iron</item>
 
-        <item name="colorButtonNormal">@color/primary_darker</item>
+        <item name="colorButtonNormal">@color/oil</item>
+        <item name="android:textColorPrimary">@color/iron</item>
 
     </style>
 
