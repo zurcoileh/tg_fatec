@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.firebase.easy_ride.R;
+import com.app.easy_ride.R;
 
 import butterknife.ButterKnife;
 import butterknife.InjectView;

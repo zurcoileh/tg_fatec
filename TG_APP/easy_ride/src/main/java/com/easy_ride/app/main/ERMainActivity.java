@@ -1,11 +1,9 @@
 package com.easy_ride.app.main;
 
-import android.app.FragmentManager;
-import android.app.SearchManager;
-import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 
-import android.app.Fragment;
 import android.content.res.Configuration;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.support.v4.view.GravityCompat;
@@ -20,17 +18,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.easy_ride.app.model.User;
 import com.easy_ride.app.model.UserDAO;
 import com.firebase.client.Firebase;
-import com.firebase.easy_ride.R;
+import com.app.easy_ride.R;
 import com.firebase.geofire.GeoFire;
-
-import java.util.Locale;
 
 public class ERMainActivity extends FragmentActivity {
 
@@ -181,17 +175,18 @@ public class ERMainActivity extends FragmentActivity {
             args.putInt(ResultViewFragment.ARG_MENU_ITEM_NUMBER, position);
             fragment.setArguments(args);
 
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+           // FragmentManager fragmentManager = getFragmentManager();
+           // fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
         }else{
-            Intent map_view= new Intent(this,ERLocationActivity.class);
-            this.startActivity(map_view);
+            Fragment map_view= new ERLocationFragment();
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, map_view).commit();
         }
 
         // update selected item and title, then close the drawer
-        mDrawerList.setItemChecked(position, true);
-        setTitle(mItemTitles[position]);
-        mDrawerLayout.closeDrawer(mDrawerList);
+      //  mDrawerList.setItemChecked(position, true);
+       // setTitle(mItemTitles[position]);
+        //mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     @Override

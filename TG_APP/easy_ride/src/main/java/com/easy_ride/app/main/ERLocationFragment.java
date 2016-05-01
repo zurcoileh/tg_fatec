@@ -5,12 +5,18 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
+
+import com.app.easy_ride.R;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
-import com.app.easy_ride.R;
 import com.firebase.geofire.GeoFire;
 import com.firebase.geofire.GeoLocation;
 import com.firebase.geofire.GeoQuery;
@@ -18,12 +24,17 @@ import com.firebase.geofire.GeoQueryEventListener;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.*;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.Circle;
+import com.google.android.gms.maps.model.CircleOptions;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ERLocationActivity extends FragmentActivity implements GeoQueryEventListener, GoogleMap.OnCameraChangeListener {
+public class ERLocationFragment extends Fragment implements GeoQueryEventListener, GoogleMap.OnCameraChangeListener {
 
     private static final GeoLocation INITIAL_CENTER = new GeoLocation(-23.1572774, -45.7953402);
     private static final int INITIAL_ZOOM_LEVEL = 14;
@@ -33,25 +44,30 @@ public class ERLocationActivity extends FragmentActivity implements GeoQueryEven
     private Circle searchCircle;
     private GeoFire geoFire;
     private GeoQuery geoQuery;
+    private View view;
 
     private Map<String,Marker> markers;
 
+    public ERLocationFragment(){}
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_erlocation);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        this.view = inflater.inflate(R.layout.activity_erlocation,container,false);
 
         // setup map and camera position
-        SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);
-        this.map = mapFragment.getMap();
-        LatLng latLngCenter = new LatLng(INITIAL_CENTER.latitude, INITIAL_CENTER.longitude);
-        this.searchCircle = this.map.addCircle(new CircleOptions().center(latLngCenter).radius(1000));
-        this.searchCircle.setFillColor(Color.argb(66, 255, 0, 255));
-        this.searchCircle.setStrokeColor(Color.argb(66, 0, 0, 0));
-        this.map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngCenter, INITIAL_ZOOM_LEVEL));
-        this.map.setOnCameraChangeListener(this);
+        SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
+        if (mapFragment != null) {
+            this.map = mapFragment.getMap();
+            LatLng latLngCenter = new LatLng(INITIAL_CENTER.latitude, INITIAL_CENTER.longitude);
+            this.searchCircle = this.map.addCircle(new CircleOptions().center(latLngCenter).radius(1000));
+            this.searchCircle.setFillColor(Color.argb(66, 255, 0, 255));
+            this.searchCircle.setStrokeColor(Color.argb(66, 0, 0, 0));
+            this.map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngCenter, INITIAL_ZOOM_LEVEL));
+            this.map.setOnCameraChangeListener(this);
+        }
 
-        Firebase.setAndroidContext(this);
+        Firebase.setAndroidContext(getActivity());
 
         // setup GeoFire
         this.geoFire = new GeoFire(new Firebase(GEO_FIRE_REF));
@@ -60,10 +76,12 @@ public class ERLocationActivity extends FragmentActivity implements GeoQueryEven
 
         // setup markers
         this.markers = new HashMap<String, Marker>();
+
+        return view;
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         // remove all event listeners to stop updating in the background
         this.geoQuery.removeAllListeners();
@@ -74,7 +92,7 @@ public class ERLocationActivity extends FragmentActivity implements GeoQueryEven
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
         // add an event listener to start updating locations again
         this.geoQuery.addGeoQueryEventListener(this);
@@ -112,7 +130,7 @@ public class ERLocationActivity extends FragmentActivity implements GeoQueryEven
 
     @Override
     public void onGeoQueryError(FirebaseError error) {
-        new AlertDialog.Builder(this)
+        new AlertDialog.Builder(getActivity())
                 .setTitle("Error")
                 .setMessage("There was an unexpected error querying GeoFire: " + error.getMessage())
                 .setPositiveButton(android.R.string.ok, null)

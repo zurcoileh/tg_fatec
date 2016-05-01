@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.firebase.easy_ride" >
+    package="com.app.easy_ride" >
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -34,16 +34,18 @@
             android:name="com.easy_ride.app.main.ERMainActivity"
             android:label="@string/app_name" >
 
-        </activity>
-        <activity
-            android:name="com.easy_ride.app.main.ERLoginActivity"
-            android:label="@string/title_activity_erlogin"
-            android:theme="@style/AppTheme.Dark">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+        </activity>
+        <activity
+            android:name="com.easy_ride.app.main.ERLoginActivity"
+            android:label="@string/title_activity_erlogin"
+            android:theme="@style/AppTheme.Dark">
+
 
         </activity>
         <activity
