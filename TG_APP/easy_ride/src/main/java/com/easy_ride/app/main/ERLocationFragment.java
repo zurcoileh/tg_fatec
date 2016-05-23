@@ -7,7 +7,6 @@ import android.os.Handler;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +14,9 @@ import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Interpolator;
 
 import com.app.easy_ride.R;
+import com.easy_ride.app.controller.ERMainController;
+import com.easy_ride.app.model.ERDBModel;
+import com.easy_ride.app.support.Constants;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.geofire.GeoFire;
@@ -33,13 +35,12 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Observable;
 
-public class ERLocationFragment extends Fragment implements GeoQueryEventListener, GoogleMap.OnCameraChangeListener {
+public class ERLocationFragment extends Fragment implements GeoQueryEventListener, GoogleMap.OnCameraChangeListener,ERView {
 
-    private static final GeoLocation INITIAL_CENTER = new GeoLocation(-23.1572774, -45.7953402);
-    private static final int INITIAL_ZOOM_LEVEL = 14;
-    private static final String GEO_FIRE_REF ="https://demolocal.firebaseio.com/geo";
-
+    private ERMainController controller;
+    private ERDBModel model;
     private GoogleMap map;
     private Circle searchCircle;
     private GeoFire geoFire;
@@ -53,31 +54,40 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        this.view = inflater.inflate(R.layout.activity_erlocation,container,false);
+        this.view = inflater.inflate(R.layout.fragment_erlocation,container,false);
+        //------ Setting MVP -------//
+        model = new ERDBModel();
+        model.addObserver(this);
+        controller = new ERMainController(model,this.getActivity());
 
         // setup map and camera position
         SupportMapFragment mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
         if (mapFragment != null) {
             this.map = mapFragment.getMap();
-            LatLng latLngCenter = new LatLng(INITIAL_CENTER.latitude, INITIAL_CENTER.longitude);
+            LatLng latLngCenter = new LatLng(Constants.INITIAL_CENTER.latitude, Constants.INITIAL_CENTER.longitude);
             this.searchCircle = this.map.addCircle(new CircleOptions().center(latLngCenter).radius(1000));
             this.searchCircle.setFillColor(Color.argb(66, 255, 0, 255));
             this.searchCircle.setStrokeColor(Color.argb(66, 0, 0, 0));
-            this.map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngCenter, INITIAL_ZOOM_LEVEL));
+            this.map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngCenter, Constants.INITIAL_ZOOM_LEVEL));
             this.map.setOnCameraChangeListener(this);
         }
 
         Firebase.setAndroidContext(getActivity());
 
         // setup GeoFire
-        this.geoFire = new GeoFire(new Firebase(GEO_FIRE_REF));
+        this.geoFire = new GeoFire(new Firebase(Constants.FIREBASE_GEO_REF));
         // radius in km
-        this.geoQuery = this.geoFire.queryAtLocation(INITIAL_CENTER, 1);
+        this.geoQuery = this.geoFire.queryAtLocation(Constants.INITIAL_CENTER, 1);
 
         // setup markers
         this.markers = new HashMap<String, Marker>();
 
         return view;
+    }
+
+    @Override
+    public void update(Observable observable, Object data) {
+        //controller.populateListView(data);
     }
 
     @Override

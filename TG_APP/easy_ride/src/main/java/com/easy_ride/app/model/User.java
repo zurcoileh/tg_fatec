@@ -9,8 +9,9 @@ public class User {
     private String name;
     private String lastname;
     private String email;
-    private Location loc;
-    private int tag;
+    private Location location;
+    private Location home;
+    private int type_user;
 
     public User(){}
 
@@ -37,12 +38,12 @@ public class User {
         this.email = email;
     }
 
-    public int getTag() {
-        return tag;
+    public int getType_user() {
+        return type_user;
     }
 
-    public void setTag(int tag) {
-        this.tag = tag;
+    public void setType_user(int type_user) {
+        this.type_user = type_user;
     }
 
     public String getRa() {
@@ -67,10 +68,10 @@ public class User {
     }
 
     public Location getLoc() {
-        return loc;
+        return location;
     }
 
     public void setLoc(Location loc) {
-        this.loc = loc;
+        this.location = loc;
     }
 }

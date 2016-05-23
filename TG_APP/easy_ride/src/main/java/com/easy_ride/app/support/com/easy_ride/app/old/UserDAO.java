@@ -1,7 +1,8 @@
-package com.easy_ride.app.model;
+package com.easy_ride.app.support.com.easy_ride.app.old;
 
 import android.widget.TextView;
 
+import com.easy_ride.app.model.User;
 import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;

@@ -23,35 +23,39 @@
             android:value="AIzaSyDjw8K1DgTV-fhyOaoW5ms39RQyteNW_RA" />
 
         <activity
-            android:name="com.easy_ride.app.main.ERLocationActivity"
+            android:name="com.easy_ride.app.support.com.easy_ride.app.old.ERLocationActivity"
             android:label="@string/app_name"
             android:parentActivityName="com.easy_ride.app.main.ERMainActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.easy_ride.app.main.ERLocationActivity" />
+                android:value="com.easy_ride.app.support.com.easy_ride.app.old.ERLocationActivity" />
         </activity>
         <activity
             android:name="com.easy_ride.app.main.ERMainActivity"
             android:label="@string/app_name" >
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
         </activity>
         <activity
             android:name="com.easy_ride.app.main.ERLoginActivity"
             android:label="@string/title_activity_erlogin"
-            android:theme="@style/AppTheme.Dark">
-
-
+            android:theme="@style/AppTheme.Dark" >
         </activity>
         <activity
             android:name="com.easy_ride.app.main.ERSignUpActivity"
             android:label="@string/title_activity_ersign_up"
             android:theme="@style/AppTheme.Dark" >
+        </activity>
+        <activity android:name="com.easy_ride.app.support.com.easy_ride.app.old.ERListActivity" >
+        </activity>
+        <activity
+            android:name="com.easy_ride.app.main.ERVMainActivity"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.easy_ride.app.main.ERUListFragment" >
         </activity>
     </application>
 

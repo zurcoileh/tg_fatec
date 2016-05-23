@@ -1,4 +1,4 @@
-package com.easy_ride.app.main;
+package com.easy_ride.app.support.com.easy_ride.app.old;
 
 import android.app.AlertDialog;
 import android.graphics.Color;
@@ -39,7 +39,7 @@ public class ERLocationActivity extends FragmentActivity implements GeoQueryEven
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_erlocation);
+        setContentView(R.layout.fragment_erlocation);
 
         // setup map and camera position
         SupportMapFragment mapFragment = (SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map);

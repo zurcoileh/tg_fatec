@@ -1,37 +1,35 @@
 package com.easy_ride.app.main;
 
-import android.support.v4.app.FragmentManager;
-
 import android.content.res.Configuration;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.support.v4.app.ActionBarDrawerToggle;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-
-import android.support.v4.app.ActionBarDrawerToggle;
-import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.easy_ride.app.model.User;
-import com.easy_ride.app.support.com.easy_ride.app.old.UserDAO;
-import com.firebase.client.Firebase;
 import com.app.easy_ride.R;
-import com.firebase.geofire.GeoFire;
+import com.easy_ride.app.controller.ERMainController;
+import com.easy_ride.app.model.ERDBModel;
+import com.easy_ride.app.support.Constants;
+import com.firebase.client.Firebase;
 
-public class ERMainActivity extends FragmentActivity {
+import java.util.Observable;
+
+public class ERVMainActivity extends FragmentActivity implements ERView {
+
+    private ERDBModel model;
+    private ERMainController controller;
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
-
     private CharSequence mDrawerTitle;
     private CharSequence mTitle;
     private String[] mItemTitles;
@@ -46,64 +44,54 @@ public class ERMainActivity extends FragmentActivity {
         mItemTitles = getResources().getStringArray(R.array.menu_items_array);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         mDrawerList = (ListView) findViewById(R.id.left_drawer);
-
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, mItemTitles));
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_list_item, mItemTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
-
         // enable ActionBar app icon to behave as action to toggle nav drawer
         getActionBar().setDisplayHomeAsUpEnabled(true);
         getActionBar().setHomeButtonEnabled(true);
-
         // ActionBarDrawerToggle ties together the the proper interactions
         // between the sliding drawer and the action bar app icon
         mDrawerToggle = new ActionBarDrawerToggle(
-                this,                  /* host Activity */
-                mDrawerLayout,         /* DrawerLayout object */
-                R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
-                R.string.drawer_open,  /* "open drawer" description for accessibility */
-                R.string.drawer_close  /* "close drawer" description for accessibility */
+                    this,                  /* host Activity */
+                    mDrawerLayout,         /* DrawerLayout object */
+                    R.drawable.ic_drawer,  /* nav drawer image to replace 'Up' caret */
+                    R.string.drawer_open,  /* "open drawer" description for accessibility */
+                    R.string.drawer_close  /* "close drawer" description for accessibility */
         ) {
-            public void onDrawerClosed(View view) {
-                getActionBar().setTitle(mTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-
-            public void onDrawerOpened(View drawerView) {
-                getActionBar().setTitle(mDrawerTitle);
-                invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
-            }
-        };
-        mDrawerLayout.setDrawerListener(mDrawerToggle);
+                public void onDrawerClosed(View view) {
+                    getActionBar().setTitle(mTitle);
+                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                }
+                public void onDrawerOpened(View drawerView) {
+                    getActionBar().setTitle(mDrawerTitle);
+                    invalidateOptionsMenu(); // creates call to onPrepareOptionsMenu()
+                }
+            };
+            mDrawerLayout.setDrawerListener(mDrawerToggle);
 
         if (savedInstanceState == null) {
             selectItem(0);
         }
 
 
-
-        //-------------------------------------------------------------//
-
         Firebase.setAndroidContext(this);
-        UserDAO userDao = new UserDAO();
-        userDao.setRefConn(new Firebase("https://demolocal.firebaseio.com/users"));
 
-      //  Intent intent = new Intent(this, ERLocationActivity.class);
-      //  startActivity(intent);
-
-
-
-         // setup GeoFire
-      //  this.geoFire = new GeoFire(new Firebase("https://demolocal.firebaseio.com/geo"));
-        // radius in km
-      //  this.geoQuery = this.geoFire.queryAtLocation(INITIAL_CENTER, 1);
-
-       // initializeData(userDao, geoFire);
+        //------- CONF MVP ---------//
+        model = new ERDBModel();
+        model.addObserver(this);
+        controller = new ERMainController(model, this);
     }
 
+    //event called when observers are notified
+    @Override
+    public void update(Observable observable, Object data) {
+       // controller.populateListView(listView,data);
+    }
+
+    /*
     public void initializeData(UserDAO userDao, GeoFire geo){
 
         userDao.save("heliocruz", new User("12345", "Helio", "Ribeiro da Cruz", "uteste1@teste.com"));
@@ -114,7 +102,7 @@ public class ERMainActivity extends FragmentActivity {
         //  userDao.saveLocation(geo,"ronancarmo",new GeoLocation(-23.1572774, -45.7953402));
         //  userDao.saveLocation(geo,"marcosribeiro",new GeoLocation(-23.1572774, -45.7953402));
 
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -142,22 +130,13 @@ public class ERMainActivity extends FragmentActivity {
         // Handle action buttons
         switch(item.getItemId()) {
             case R.id.action_logout:
-                // create intent to perform web search for this planet
-            //    Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
-             //   intent.putExtra(SearchManager.QUERY, getActionBar().getTitle());
-                // catch event that there's no activity to handle intent
-              //  if (intent.resolveActivity(getPackageManager()) != null) {
-                //    startActivity(intent);
-             //   } else {
-           //         Toast.makeText(this, R.string.app_not_available, Toast.LENGTH_LONG).show();
-              //  }
-              //  return true;
+             return true;
             default:
                 return super.onOptionsItemSelected(item);
         }
     }
 
-    /* The click listner for ListView in the navigation drawer */
+    /* The click listener for ListView in the navigation drawer */
     private class DrawerItemClickListener implements ListView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -167,26 +146,25 @@ public class ERMainActivity extends FragmentActivity {
 
     private void selectItem(int position) {
         // update the main content by replacing fragments
-      //  Fragment fragment = new ResultViewFragment();
+        switch(position){
+            case Constants.OPEN_DEFAULT:
+              /*  Fragment fragment = new ResultViewFragment();
+                Bundle args = new Bundle();
+                args.putInt(ResultViewFragment.ARG_MENU_ITEM_NUMBER, position);
+                fragment.setArguments(args);*/ break;
 
-        if(position != 1) {
-            Fragment fragment = new ResultViewFragment();
-            Bundle args = new Bundle();
-            args.putInt(ResultViewFragment.ARG_MENU_ITEM_NUMBER, position);
-            fragment.setArguments(args);
+            case Constants.OPEN_MAP_VIEW:
+                controller.handle(ERMainController.Messages.Submit,Constants.OPEN_MAP_VIEW);break;
 
-           // FragmentManager fragmentManager = getFragmentManager();
-           // fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-        }else{
-            Fragment map_view= new ERLocationFragment();
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_frame, map_view).commit();
+            case Constants.OPEN_SEARCH_LIST:
+                controller.handle(ERMainController.Messages.Submit,Constants.OPEN_SEARCH_LIST);break;
+
+            default:break;
         }
-
         // update selected item and title, then close the drawer
-      //  mDrawerList.setItemChecked(position, true);
-       // setTitle(mItemTitles[position]);
-        //mDrawerLayout.closeDrawer(mDrawerList);
+        mDrawerList.setItemChecked(position, true);
+        setTitle(mItemTitles[position]);
+        mDrawerLayout.closeDrawer(mDrawerList);
     }
 
     @Override
@@ -217,6 +195,8 @@ public class ERMainActivity extends FragmentActivity {
     /**
      * Fragment that appears in the "content_frame", shows a planet
      */
+
+    /*
     public static class ResultViewFragment extends Fragment {
         public static final String ARG_MENU_ITEM_NUMBER = "menu_item_number";
 
@@ -237,5 +217,5 @@ public class ERMainActivity extends FragmentActivity {
             getActivity().setTitle(menu_item);
             return rootView;
         }
-    }
+    } */
 }
