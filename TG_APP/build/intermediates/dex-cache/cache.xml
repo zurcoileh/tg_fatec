@@ -2,130 +2,11 @@
 <items version="2" >
 
     <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.1.0\jars\classes.jar"
+        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.2.2\3c8f6018eaa72d43b261181e801e6f8676c16ef6\jackson-databind-2.2.2.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="95758a2905669affbffc5ddd262921d375674fad">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-e43cd275ae4a6bed62edb46f5fdfa494052918ec.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-fd9c1715e9e63853535e1d582a2e8c3fe7884bc0.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-db9922eddd87b0931916a23b6bd1f37d1ec2ce40.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="997773777cf3904c11d6764fe3b7668538220e49">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-b2023d966357c5ddf63cd9f5924cddb290c44b68.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="d61920aba361832a9545a43fa8c9453eb02f18f7">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-8b024ffab39a7764ab5d606be804229015eaf136.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="325788a04b436a0bccbc5b4c54cf0f12ebdcbd2d">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-fdb031c377295fca5b62c2c03b117ed76ba90ce2.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-051af0dc360b5174e643be1f6b57d5cfccd64bad.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-bb4b63c94fae68e695798ae274902878007f4b8d.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-ca82f991a43ada39420cc8c905ef60538390a0a1.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.2.2\285cb9c666f0f0f3dd8a1be04e1f457eb7b15113\jackson-annotations-2.2.2.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\jackson-annotations-2.2.2-909d9c820726ce767fe99a9aee68e5cd5616e4e5.jar" />
-    </item>
-    <item
-        jar="C:\androidsdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-9b8adc5171a15792b99efb3d5dcde428e99bb942.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-a75a9d4e734464903558c4eb5a39035369e1081c.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-e00b6813550c21125d152344281d31a86f7d1cbb.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-3dfa8c6b2ed8bb10fff7916a365d97d4b0d5a030.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-b0bb338d08faf41ad6a6c76a9dc6d595c1099a42.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-699e6f23fbd09d505945e03caaeee9da146a1281.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.2.2\d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b\jackson-core-2.2.2.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\jackson-core-2.2.2-4a107db11740f0c275c901e2a2ec2da6a707cbeb.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="482de223655d06253cc6a4955d653f8994169500">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-08eb21b4db79fae045170b18bf4b3dbff3d29711.jar" />
+        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\jackson-databind-2.2.2-f9a7e700dbd8a13345b6a50675567d78ec4ae72f.jar" />
     </item>
     <item
         jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-vision\8.1.0\jars\classes.jar"
@@ -135,6 +16,13 @@
         <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-a4b0e88ee49a7ece56bb0e9c757384aab4e5120d.jar" />
     </item>
     <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-7eef44232f1f2bbc24ed1ecacde9201749bb12e1.jar" />
+    </item>
+    <item
         jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-games\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
@@ -142,25 +30,11 @@
         <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-7cf43c21592432ead42494b673e349c30abf5911.jar" />
     </item>
     <item
-        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\6.1.0\63735f48b82bcd24cdd33821342428252eb1ca5a\butterknife-6.1.0.jar"
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.android.support\design\22.2.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\butterknife-6.1.0-fb23367a2dee0882db0c5819cfd47b1b79915d8b.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.firebase\geofire\1.1.1\aaddc090eaef03c8ca29baeac71d928fa9caf9d4\geofire-1.1.1.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="aaddc090eaef03c8ca29baeac71d928fa9caf9d4">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\geofire-1.1.1-4b2df42e3f34667c420a1a04b63b4a81e4c66257.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-e6c0e1f3aa17631c022e46644b171ce050d185b4.jar" />
+        sha1="fc63b820d54c8a27a3a614bdd93920e0076581c2">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-699e6f23fbd09d505945e03caaeee9da146a1281.jar" />
     </item>
     <item
         jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.android.support\support-v4\22.2.0\jars\libs\internal_impl-22.2.0.jar"
@@ -170,39 +44,25 @@
         <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-0ff8f93e4ac4d44b43a4d556322d02c67cef9964.jar" />
     </item>
     <item
-        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-android\2.3.1\be29b24233711c419ce935aa0a1b12ebc49d1c9a\firebase-client-android-2.3.1.jar"
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-measurement\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="be29b24233711c419ce935aa0a1b12ebc49d1c9a">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\firebase-client-android-2.3.1-0103bc5f81844e3774fb5e8d145eb01ae9f9beed.jar" />
+        sha1="482de223655d06253cc6a4955d653f8994169500">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-08eb21b4db79fae045170b18bf4b3dbff3d29711.jar" />
     </item>
     <item
-        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.firebase\tubesock\0.0.11\d37cb67277928cf59344b4196af8d9cee1f1a27c\tubesock-0.0.11.jar"
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="d37cb67277928cf59344b4196af8d9cee1f1a27c">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\tubesock-0.0.11-ede22cc5582db84fbcc4dde72047e0afabbecad9.jar" />
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-a92a400e825bd5de9b22294fc9c4b7203ac0c1af.jar" />
     </item>
     <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-fitness\8.1.0\jars\classes.jar"
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-nearby\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="9cf8c0ef60847621c7ad00b4f78dbfc9daba4af2">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-7eef44232f1f2bbc24ed1ecacde9201749bb12e1.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.2.2\3c8f6018eaa72d43b261181e801e6f8676c16ef6\jackson-databind-2.2.2.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="3c8f6018eaa72d43b261181e801e6f8676c16ef6">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\jackson-databind-2.2.2-f9a7e700dbd8a13345b6a50675567d78ec4ae72f.jar" />
-    </item>
-    <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\jars\classes.jar"
-        jumboMode="false"
-        revision="21.1.1"
-        sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-b7222fc97d28ea4911bc668c55582de93b7295e9.jar" />
+        sha1="041d93cf0533591c29d1d7263b2fa114dbfb20bd">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-3dfa8c6b2ed8bb10fff7916a365d97d4b0d5a030.jar" />
     </item>
     <item
         jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-appinvite\8.1.0\jars\classes.jar"
@@ -212,11 +72,46 @@
         <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-53f8201447585cb3af1138328bbb5fdaef4d9621.jar" />
     </item>
     <item
-        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-jvm\2.3.1\4d53b7d6983247af02b8fe7e4228fff555a5e828\firebase-client-jvm-2.3.1.jar"
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-identity\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="4d53b7d6983247af02b8fe7e4228fff555a5e828">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\firebase-client-jvm-2.3.1-c47c2743e179c095d2232d8a51fdce9a2e5a22f4.jar" />
+        sha1="d294caf562c4c678b2ef351662a0ca6f1a4d06c0">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-b7222fc97d28ea4911bc668c55582de93b7295e9.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="3178362320bcf51228835b60ff978efadfd1f783">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-fd317b27da6e1c16e8bb2109f2596796879a7eb3.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-android\2.3.1\be29b24233711c419ce935aa0a1b12ebc49d1c9a\firebase-client-android-2.3.1.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="be29b24233711c419ce935aa0a1b12ebc49d1c9a">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\firebase-client-android-2.3.1-0103bc5f81844e3774fb5e8d145eb01ae9f9beed.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-7dd9e4a856840f2f3ddfb0300093ef9bc9a1096d.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.firebase\tubesock\0.0.11\d37cb67277928cf59344b4196af8d9cee1f1a27c\tubesock-0.0.11.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="d37cb67277928cf59344b4196af8d9cee1f1a27c">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\tubesock-0.0.11-ede22cc5582db84fbcc4dde72047e0afabbecad9.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-ads\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="997773777cf3904c11d6764fe3b7668538220e49">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-b2023d966357c5ddf63cd9f5924cddb290c44b68.jar" />
     </item>
     <item
         jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.android.support\appcompat-v7\22.2.0\jars\classes.jar"
@@ -233,6 +128,27 @@
         <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-33e810916af6430d35279897d2963dcf9f4b5e7c.jar" />
     </item>
     <item
+        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.2.2\285cb9c666f0f0f3dd8a1be04e1f457eb7b15113\jackson-annotations-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="285cb9c666f0f0f3dd8a1be04e1f457eb7b15113">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\jackson-annotations-2.2.2-909d9c820726ce767fe99a9aee68e5cd5616e4e5.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="dcf8c83c3dead00a6c4fe313e95f7aaca20dc641">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-051af0dc360b5174e643be1f6b57d5cfccd64bad.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.firebase\firebase-client-jvm\2.3.1\4d53b7d6983247af02b8fe7e4228fff555a5e828\firebase-client-jvm-2.3.1.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="4d53b7d6983247af02b8fe7e4228fff555a5e828">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\firebase-client-jvm-2.3.1-c47c2743e179c095d2232d8a51fdce9a2e5a22f4.jar" />
+    </item>
+    <item
         jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-gcm\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
@@ -240,25 +156,109 @@
         <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-b7b859542f700b023943dbac84eec97b0e08585f.jar" />
     </item>
     <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\8.1.0\jars\classes.jar"
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-panorama\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-7dd9e4a856840f2f3ddfb0300093ef9bc9a1096d.jar" />
+        sha1="d93480da1d303122ee67dc3bc23e6297bdef9951">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-bb4b63c94fae68e695798ae274902878007f4b8d.jar" />
     </item>
     <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-appindexing\8.1.0\jars\classes.jar"
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-plus\8.1.0\jars\classes.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-a92a400e825bd5de9b22294fc9c4b7203ac0c1af.jar" />
+        sha1="d61920aba361832a9545a43fa8c9453eb02f18f7">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-8b024ffab39a7764ab5d606be804229015eaf136.jar" />
     </item>
     <item
-        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-cast\8.1.0\jars\classes.jar"
+        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.firebase\geofire\1.1.1\aaddc090eaef03c8ca29baeac71d928fa9caf9d4\geofire-1.1.1.jar"
         jumboMode="false"
         revision="21.1.1"
-        sha1="3178362320bcf51228835b60ff978efadfd1f783">
-        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-fd317b27da6e1c16e8bb2109f2596796879a7eb3.jar" />
+        sha1="aaddc090eaef03c8ca29baeac71d928fa9caf9d4">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\geofire-1.1.1-4b2df42e3f34667c420a1a04b63b4a81e4c66257.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-safetynet\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="3b05c18f60969ecc2ba49c0409c4b96be2d9cb0c">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-db9922eddd87b0931916a23b6bd1f37d1ec2ce40.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.jakewharton\butterknife\6.1.0\63735f48b82bcd24cdd33821342428252eb1ca5a\butterknife-6.1.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="63735f48b82bcd24cdd33821342428252eb1ca5a">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\butterknife-6.1.0-fb23367a2dee0882db0c5819cfd47b1b79915d8b.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="95758a2905669affbffc5ddd262921d375674fad">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-e43cd275ae4a6bed62edb46f5fdfa494052918ec.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.android.support\mediarouter-v7\22.2.0\jars\libs\internal_impl-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="0632f06970823b7e3436f649bfa65b47035c91d0">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\internal_impl-22.2.0-e00b6813550c21125d152344281d31a86f7d1cbb.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="82825756edeeb3b56b15e73b2edd56e93da5a444">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-b0bb338d08faf41ad6a6c76a9dc6d595c1099a42.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-wearable\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="97f3b099801a9ad9d70e835b9125273e986eb68d">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-e6c0e1f3aa17631c022e46644b171ce050d185b4.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-location\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="3aed37c38c56679602255dd72ef356da5d327cda">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-fd9c1715e9e63853535e1d582a2e8c3fe7884bc0.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-maps\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="2a7e47da654546f9457deb6132364f1bf33a1857">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-ca82f991a43ada39420cc8c905ef60538390a0a1.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.2.2\d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b\jackson-core-2.2.2.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="d20be6a5ddd6f8cfd36ebf6dea329873a1c41f1b">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\jackson-core-2.2.2-4a107db11740f0c275c901e2a2ec2da6a707cbeb.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-wallet\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="325788a04b436a0bccbc5b4c54cf0f12ebdcbd2d">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-fdb031c377295fca5b62c2c03b117ed76ba90ce2.jar" />
+    </item>
+    <item
+        jar="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\exploded-aar\com.google.android.gms\play-services-drive\8.1.0\jars\classes.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="3c729e6d76a36c5dc27e6a4c4009296f49eaa88a">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\classes-a75a9d4e734464903558c4eb5a39035369e1081c.jar" />
+    </item>
+    <item
+        jar="C:\androidsdk\extras\android\m2repository\com\android\support\support-annotations\22.2.0\support-annotations-22.2.0.jar"
+        jumboMode="false"
+        revision="21.1.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="C:\Users\Helio\Desktop\tg_fatec\TG_APP\easy_ride\build\intermediates\pre-dexed\debug\support-annotations-22.2.0-9b8adc5171a15792b99efb3d5dcde428e99bb942.jar" />
     </item>
 
 </items>

@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.app.easy_ride.R;
 import com.easy_ride.app.main.ERLocationFragment;
+import com.easy_ride.app.main.ERSettingsFragment;
 import com.easy_ride.app.main.ERUListAdapter;
 import com.easy_ride.app.main.ERUListFragment;
 import com.easy_ride.app.model.ERDBModel;
@@ -52,8 +53,12 @@ public class ERMainController extends ERController<MainModel>{
                 Fragment map_view = new ERLocationFragment();
                 FragmentManager fragmentManager = frag.getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, map_view).commit();
-            }else {
+            }else if ((int)data[0] == 2)  {
                 Fragment map_view = new ERUListFragment();
+                FragmentManager fragmentManager = frag.getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, map_view).commit();
+            }else{
+                Fragment map_view = new ERSettingsFragment();
                 FragmentManager fragmentManager = frag.getSupportFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.content_frame, map_view).commit();
             }

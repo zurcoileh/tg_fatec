@@ -74,4 +74,6 @@ public class User {
     public void setLoc(Location loc) {
         this.location = loc;
     }
+
+
 }

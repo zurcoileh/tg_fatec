@@ -8,7 +8,7 @@ import com.firebase.geofire.GeoLocation;
 public class Constants {
 
     public static final String FIREBASE_URL = "https://demolocal.firebaseio.com/";
-    public static final String FIREBASE_USER_REF = "https://demolocal.firebaseio.com/users";
+    public static final String FIREBASE_USER_REF = "https://demolocal.firebaseio.com/user_data";
     public static final String FIREBASE_GEO_REF = "https://demolocal.firebaseio.com/geo";
 
     public static final GeoLocation INITIAL_CENTER = new GeoLocation(-23.1572774, -45.7953402);
@@ -20,7 +20,13 @@ public class Constants {
 
     public static final int OPEN_MAP_VIEW = 1;
     public static final int OPEN_SEARCH_LIST = 2;
+    public static final int OPEN_SETTINGS = 3;
+
     public static final int  OPEN_DEFAULT = 0;
+    public static final String USER_DO_NOT_EXIST = "Usuário não existe";
+    public static final String WRONG_PASSWORD = "Senha incorreta";
+    public static final String CONNECT_FAIL = "Erro na conexão";
+    public static final String UNKOWN = "Tente novamente mais tarde";
 
 
     private static final String ON_SAVE_SUCESS = "added with success!";

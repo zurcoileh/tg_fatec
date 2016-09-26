@@ -18,4 +18,14 @@ public class MainModel extends Observable implements PresentationModel{
     public void update() {
 
     }
+
+    @Override
+    public void login() {
+
+    }
+
+    @Override
+    public void loginStatus() {
+
+    }
 }

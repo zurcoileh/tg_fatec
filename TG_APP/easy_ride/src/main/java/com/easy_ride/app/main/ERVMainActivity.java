@@ -3,7 +3,10 @@ package com.easy_ride.app.main;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
+
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.view.Menu;
@@ -17,6 +20,7 @@ import android.widget.ListView;
 import com.app.easy_ride.R;
 import com.easy_ride.app.controller.ERMainController;
 import com.easy_ride.app.model.ERDBModel;
+import com.easy_ride.app.model.UserSessionManager;
 import com.easy_ride.app.support.Constants;
 import com.firebase.client.Firebase;
 
@@ -26,6 +30,7 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
 
     private ERDBModel model;
     private ERMainController controller;
+    private UserSessionManager session;
 
     private DrawerLayout mDrawerLayout;
     private ListView mDrawerList;
@@ -83,6 +88,9 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
         model = new ERDBModel();
         model.addObserver(this);
         controller = new ERMainController(model, this);
+
+        this.session = new UserSessionManager(getApplicationContext());
+
     }
 
     //event called when observers are notified
@@ -91,8 +99,8 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
        // controller.populateListView(listView,data);
     }
 
-    /*
-    public void initializeData(UserDAO userDao, GeoFire geo){
+
+   /* public void initializeData(UserDAO userDao, GeoFire geo){
 
         userDao.save("heliocruz", new User("12345", "Helio", "Ribeiro da Cruz", "uteste1@teste.com"));
         userDao.save("ronancarmo", new User("12346", "Ronan", "Carmo Cruz", "uteste2@teste.com"));
@@ -130,6 +138,7 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
         // Handle action buttons
         switch(item.getItemId()) {
             case R.id.action_logout:
+                this.session.logoutUser();
              return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -155,10 +164,10 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
 
             case Constants.OPEN_MAP_VIEW:
                 controller.handle(ERMainController.Messages.Submit,Constants.OPEN_MAP_VIEW);break;
-
             case Constants.OPEN_SEARCH_LIST:
                 controller.handle(ERMainController.Messages.Submit,Constants.OPEN_SEARCH_LIST);break;
-
+            case Constants.OPEN_SETTINGS:
+                controller.handle(ERMainController.Messages.Submit, Constants.OPEN_SETTINGS);break;
             default:break;
         }
         // update selected item and title, then close the drawer

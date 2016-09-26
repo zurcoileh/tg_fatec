@@ -7,4 +7,6 @@ package com.easy_ride.app.model;
 public interface PresentationModel {
     void getAllResults();
     void update();
+    void login();
+    void loginStatus();
 }

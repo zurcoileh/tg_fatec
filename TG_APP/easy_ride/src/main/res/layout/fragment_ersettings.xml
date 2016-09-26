@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/settings1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    style="@style/AppTheme.Dark">
+
+
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_marginTop="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Ativar modo motorista:"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp"/>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ToggleButton
+            android:id="@+id/toggleButton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/switch_sel"
+            android:checked="false"
+            android:text=""
+            android:textOff=""
+            android:textOn=""
+            android:layout_alignParentTop="true"
+           />
+
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="2dp"
+            android:id="@+id/driver"
+            android:cropToPadding="false"
+            android:src="@drawable/car_icon"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:maxHeight="70dp"
+            android:maxWidth="148dp"
+            android:adjustViewBounds="true" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="2dp"
+            android:id="@+id/passenger"
+            android:cropToPadding="false"
+            android:src="@drawable/user_icon"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:maxHeight="70dp"
+            android:maxWidth="148dp"
+            android:adjustViewBounds="true" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Configure o raio de busca:"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="30dp"/>
+
+    <SeekBar
+        android:id="@+id/seek1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:progress="20"
+        android:secondaryProgress="20" />
+    <TextView
+        android:id="@+id/dist_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="0KM"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginTop="5dp"
+        android:layout_marginLeft="150dp"/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Ativar modo invisível:"
+        android:textColor="#ffffff"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="20dp"/>
+
+s
+    <ToggleButton
+        android:id="@+id/toggleButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/switch_sel"
+        android:checked="false"
+        android:text=""
+        android:textOff=""
+        android:textOn=""
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="130dp"
+        />
+
+
+</LinearLayout>
