@@ -1,5 +1,10 @@
 package com.easy_ride.app.model;
 
+import android.location.Location;
+
+import com.firebase.geofire.GeoLocation;
+import com.google.android.gms.maps.model.LatLng;
+
 /**
  * Created by Helio on 4/16/2016.
  */
@@ -9,17 +14,23 @@ public class User {
     private String name;
     private String lastname;
     private String email;
-    private Location location;
-    private Location home;
+    private GeoLocation location;
+    private GeoLocation home;
     private int type_user;
+    private String phone;
+    private String end;
+    private String neigh;
 
     public User(){}
 
-    public User(String ra, String name, String lastname, String email) {
+    public User(String ra, String name, String lastname, String email,String phone, String end, String neigh) {
         this.ra = ra;
         this.name = name;
         this.lastname = lastname;
         this.email = email;
+        this.phone = phone;
+        this.end = end;
+        this.neigh = neigh;
     }
 
     public String getLastname() {
@@ -67,13 +78,35 @@ public class User {
         return name+"  "+lastname;
     }
 
-    public Location getLoc() {
+    public GeoLocation getLoc() {
         return location;
     }
 
-    public void setLoc(Location loc) {
+    public void setLoc(GeoLocation loc) {
         this.location = loc;
     }
 
+    public String getPhone() {
+        return phone;
+    }
 
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    public String getNeigh() {
+        return neigh;
+    }
+
+    public void setNeigh(String neigh) {
+        this.neigh = neigh;
+    }
 }

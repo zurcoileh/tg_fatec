@@ -24,7 +24,6 @@ public class ERLoginController extends ERController<MainModel>{
     private static final MessageTask<ERLoginController> initializeTask = new MessageTask<ERLoginController>() {
         public void run(ERLoginController sender, Object[] data) {
             ERDBModel model = (ERDBModel)sender.getModel();
-            model.getAllResults();
             //model.notifyObservers();
         }
     };

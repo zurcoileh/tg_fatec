@@ -106,9 +106,9 @@ public class ERMainActivity extends FragmentActivity {
 
     public void initializeData(UserDAO userDao, GeoFire geo){
 
-        userDao.save("heliocruz", new User("12345", "Helio", "Ribeiro da Cruz", "uteste1@teste.com"));
+     /*   userDao.save("heliocruz", new User("12345", "Helio", "Ribeiro da Cruz", "uteste1@teste.com"));
         userDao.save("ronancarmo", new User("12346", "Ronan", "Carmo Cruz", "uteste2@teste.com"));
-        userDao.save("marcosribeiro", new User("12347", "Marcos", "Mauricio Ribeiro", "uteste3@teste.com"));
+        userDao.save("marcosribeiro", new User("12347", "Marcos", "Mauricio Ribeiro", "uteste3@teste.com"));  */
 
         //  userDao.saveLocation(geo,"heliocruz", new GeoLocation(-23.1572774, -45.7953402));
         //  userDao.saveLocation(geo,"ronancarmo",new GeoLocation(-23.1572774, -45.7953402));

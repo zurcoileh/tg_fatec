@@ -26,7 +26,7 @@ public class QueryLocation {
     public QueryLocation() {
 
         // setup GeoFire
-        this.geoFire = new GeoFire(new Firebase(Constants.FIREBASE_GEO_REF));
+        this.geoFire = new GeoFire(new Firebase(Constants.FIREBASE_GEO_PASSENGERS));
         // radius in km
         this.geoQuery = this.geoFire.queryAtLocation(Constants.INITIAL_CENTER, 1);
         // setup markers

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/msg_dialog_1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    style="@style/AppTheme.Dark">
+
+    <EditText
+        android:layout_marginTop="20dp"
+        android:id="@+id/edit_msg"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:inputType="text|textMultiLine"
+        android:gravity="top"/>
+
+    <TextView
+        android:layout_marginTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Selecione uma opção:"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp"/>
+
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <ToggleButton
+            android:id="@+id/msg_opt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/switch_sel"
+            android:checked="false"
+            android:text=""
+            android:textOff=""
+            android:textOn=""
+            android:layout_alignParentTop="true"
+           />
+
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="2dp"
+            android:id="@+id/whats_opt"
+            android:cropToPadding="false"
+            android:src="@drawable/whats"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:maxHeight="70dp"
+            android:maxWidth="148dp"
+            android:adjustViewBounds="true" />
+
+        <ImageView
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginLeft="30dp"
+            android:layout_marginTop="2dp"
+            android:id="@+id/sms_opt"
+            android:cropToPadding="false"
+            android:src="@drawable/sms"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:maxHeight="70dp"
+            android:maxWidth="148dp"
+            android:adjustViewBounds="true" />
+
+    </RelativeLayout>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/btn_panel"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fitsSystemWindows="true"
+        android:orientation="horizontal"
+        android:layout_marginBottom="20dp"
+        style="@style/AppTheme.Dark">
+
+        <Button
+            android:id="@+id/btnCancel"
+            android:layout_width="160dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginLeft="10dp"
+            android:layout_alignParentLeft="true"
+            android:text="Cancelar" />
+
+    <Button
+        android:id="@+id/btnSendMsg"
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_alignParentRight="true"
+        android:text="Enviar"
+        android:layout_alignParentEnd="true"/>
+
+        </LinearLayout>
+
+
+</LinearLayout>

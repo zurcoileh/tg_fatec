@@ -61,7 +61,6 @@ public class ERUserListController {
 
     private void doInitialize(Object[] data) {
       // ArrayAdapter<String> adapter =  (ArrayAdapter<String>)data[0];
-       model.getAllResults();
       // model.notifyObservers();
     }
 

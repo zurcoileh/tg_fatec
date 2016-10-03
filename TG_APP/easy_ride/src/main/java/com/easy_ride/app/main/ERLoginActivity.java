@@ -48,6 +48,25 @@ public class ERLoginActivity extends Activity implements ERView {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_erlogin);
+        ButterKnife.inject(this);
+        _loginButton.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                login();
+            }
+        });
+
+        _signupLink.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                // Start the Signup activity
+                Intent intent = new Intent(getApplicationContext(), ERSignUpActivity.class);
+                startActivityForResult(intent, REQUEST_SIGNUP);
+            }
+        });
 
         Firebase.setAndroidContext(this);
         model = new ERDBModel();
@@ -67,26 +86,6 @@ public class ERLoginActivity extends Activity implements ERView {
                     Intent intent = new Intent(getApplicationContext(), ERVMainActivity.class);
                     startActivity(intent);
                     finish();
-                } else {
-                    setContentView(R.layout.activity_erlogin);
-                    ButterKnife.inject(this);
-                    _loginButton.setOnClickListener(new View.OnClickListener() {
-
-                        @Override
-                        public void onClick(View v) {
-                            login();
-                        }
-                    });
-
-                    _signupLink.setOnClickListener(new View.OnClickListener() {
-
-                        @Override
-                        public void onClick(View v) {
-                            // Start the Signup activity
-                            Intent intent = new Intent(getApplicationContext(), ERSignUpActivity.class);
-                            startActivityForResult(intent, REQUEST_SIGNUP);
-                        }
-                    });
                 }
             } else {
                 Toast.makeText(getApplicationContext(), "Sem acesso a Internet.", Toast.LENGTH_LONG).show();

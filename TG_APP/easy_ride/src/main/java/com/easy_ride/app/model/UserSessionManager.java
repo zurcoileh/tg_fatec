@@ -23,10 +23,11 @@ public class UserSessionManager {
     private static final String IS_USER_LOGGED = "UserLogged";
     public static final String KEY_NAME = "name";
     public static final String KEY_EMAIL = "email";
-    public static final String KEY_DIST_PREF = "distanceProferences";
+    public static final String KEY_DIST_PREF = "distPreferences";
     public static final String KEY_DRIVER_MODE = "driver_mode";
     public static final String KEY_INVIS_MODE = "invis_mode";
-
+    public static final String KEY_RA = "ra";
+    public static final String KEY_LOCATIONS = "loc_keys";
 
     public UserSessionManager(Context context) {
         this.context = context;
@@ -34,12 +35,10 @@ public class UserSessionManager {
         this.editor = this.preferences.edit();
     }
 
-    public void createUserSession(String nome, String email) {
+    public void createUserSession(String email) {
 
         this.editor.putBoolean(IS_USER_LOGGED, true);
-        this.editor.putString(KEY_NAME, nome);
         this.editor.putString(KEY_EMAIL, email);
-
         this.editor.commit();
 
     }
@@ -79,6 +78,15 @@ public class UserSessionManager {
         return this.preferences.getBoolean(IS_USER_LOGGED,false);
     }
 
+    public void setSessionName(String key){
+        this.editor.putString(KEY_NAME, key);
+        this.editor.commit();
+    }
+    public void setSessionRa(String ra){
+        this.editor.putString(KEY_RA, ra);
+        this.editor.commit();
+    }
+
     public void configDistPreferences(int distance) {
         this.editor.putInt(KEY_DIST_PREF, distance);
         this.editor.commit();
@@ -94,14 +102,22 @@ public class UserSessionManager {
         this.editor.commit();
     }
 
+    public void setLocationKeys(String key){
+        this.editor.putString(KEY_LOCATIONS, key);
+        this.editor.commit();
+    }
+
     public int getDistPreferences() {
         return this.preferences.getInt(KEY_DIST_PREF, 20);
     }
 
+    public String getUserEmail()  {return this.preferences.getString(KEY_EMAIL, "NOT_FOUND");}
+    public String getUserName()  {return this.preferences.getString(KEY_NAME, "NOT_FOUND");}
+    public String getKeyLocations()  {return this.preferences.getString(KEY_LOCATIONS, "NOT_FOUND");}
+    public String getUserRA()  {return this.preferences.getString(KEY_RA, "NOT_FOUND");}
     public int getDriverMode() {
         return this.preferences.getInt(KEY_DRIVER_MODE,0);
     }
-
     public int getInvisMode() {
         return this.preferences.getInt(KEY_INVIS_MODE,0);
     }

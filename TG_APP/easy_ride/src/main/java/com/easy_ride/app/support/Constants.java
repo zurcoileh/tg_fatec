@@ -1,6 +1,10 @@
 package com.easy_ride.app.support;
 
+import android.location.Location;
+
 import com.firebase.geofire.GeoLocation;
+
+import java.util.Map;
 
 /**
  * Created by Helio on 5/1/2016.
@@ -9,7 +13,8 @@ public class Constants {
 
     public static final String FIREBASE_URL = "https://demolocal.firebaseio.com/";
     public static final String FIREBASE_USER_REF = "https://demolocal.firebaseio.com/user_data";
-    public static final String FIREBASE_GEO_REF = "https://demolocal.firebaseio.com/geo";
+    public static final String FIREBASE_GEO_DRIVERS = "https://demolocal.firebaseio.com/geo/drivers";
+    public static final String FIREBASE_GEO_PASSENGERS = "https://demolocal.firebaseio.com/geo/passengers";
 
     public static final GeoLocation INITIAL_CENTER = new GeoLocation(-23.1572774, -45.7953402);
     public static final int INITIAL_ZOOM_LEVEL = 14;
@@ -37,4 +42,21 @@ public class Constants {
     private static final String ON_DELETE_FAIL = "failed to delete!";
     private static final String ON_SEARCH_SUCESS = "search success";
     private static final String ON_SEARCH_FAIL = "fail to search";
+
+    public static String GEO_REFF(int mode){
+        return mode == 1 ? FIREBASE_GEO_DRIVERS : FIREBASE_GEO_PASSENGERS;
+    }
+
+
+    public static double getDistance(GeoLocation LatLng1, GeoLocation LatLng2) {
+        double distance = 0;
+        Location locationA = new Location("A");
+        locationA.setLatitude(LatLng1.latitude);
+        locationA.setLongitude(LatLng1.longitude);
+        Location locationB = new Location("B");
+        locationB.setLatitude(LatLng2.latitude);
+        locationB.setLongitude(LatLng2.longitude);
+        distance = locationA.distanceTo(locationB);
+        return distance;
+    }
 }

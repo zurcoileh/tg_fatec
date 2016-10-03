@@ -21,7 +21,7 @@ android:layout_height="match_parent">
     android:id="@+id/content_frame"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primary"/>
+    android:background="@android:color/background_light"/>
 
 <!-- android:layout_gravity="start" tells DrawerLayout to treat
      this as a sliding drawer on the left side for left-to-right

@@ -1,6 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/map_view"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    style="@style/AppTheme.Dark">
+
+
+    <fragment xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/map"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="100"
     android:name="com.google.android.gms.maps.SupportMapFragment"/>
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/user_result"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0"
+        android:background="@android:color/background_light">
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Texto Frase"
+    android:id="@+id/email_result"
+    android:layout_alignLeft="@+id/name_result"
+    android:layout_marginTop="20dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Texto Frase"
+            android:id="@+id/neigh_result"
+            android:layout_alignLeft="@+id/name_result"
+            android:layout_marginTop="40dp" />
+
+<TextView
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:text="Titulo Frase"
+    android:id="@+id/name_result"
+    android:singleLine="true"
+    android:textSize="16sp"
+    android:textColor="#f65034"
+    android:layout_alignParentTop="true"
+    android:layout_toRightOf="@+id/profileImage"
+    android:layout_toEndOf="@+id/profileImage" />
+
+<TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:textAppearance="?android:attr/textAppearanceLarge"
+    android:text="Distance"
+    android:id="@+id/dist_result"
+    android:textSize="16sp"
+    android:textColor="#f65034"
+    android:layout_marginRight="25dp"
+    android:layout_marginEnd="25dp"
+    android:layout_alignTop="@+id/name_result"
+    android:layout_alignParentRight="true"
+    android:layout_alignParentEnd="true" />
+
+        <Button
+            android:id="@+id/btnSendMessage"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_alignParentRight="true"
+            android:background="@drawable/send_msg"
+            android:layout_alignParentEnd="true"/>
+
+<ImageView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="8dp"
+    android:layout_marginTop="5dp"
+    android:id="@+id/profileImage"
+    android:cropToPadding="false"
+    android:src="@drawable/personal"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentStart="true"
+    android:layout_alignParentLeft="true"
+    android:maxHeight="70dp"
+    android:maxWidth="148dp"
+    android:adjustViewBounds="true" />
+
+</RelativeLayout>
+</LinearLayout>

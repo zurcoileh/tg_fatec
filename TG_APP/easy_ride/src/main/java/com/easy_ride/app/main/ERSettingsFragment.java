@@ -81,6 +81,9 @@ public class ERSettingsFragment extends Fragment implements ERView {
 
             @Override
             public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
+                //remove location from query
+                model.removeLocation(session.getUserRA(),session.getDriverMode());
+
                 if(isChecked)
                     session.configDriverMode(1);
                 else
@@ -94,8 +97,11 @@ public class ERSettingsFragment extends Fragment implements ERView {
 
             @Override
             public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
-                if(isChecked)
+                if(isChecked) {
+                    //remove location from geofire
+                    model.removeLocation(session.getUserRA(),session.getDriverMode());
                     session.configInvisMode(1);
+                }
                 else
                     session.configInvisMode(0);
 

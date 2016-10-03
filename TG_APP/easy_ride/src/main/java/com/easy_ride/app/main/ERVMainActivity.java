@@ -99,19 +99,6 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
        // controller.populateListView(listView,data);
     }
 
-
-   /* public void initializeData(UserDAO userDao, GeoFire geo){
-
-        userDao.save("heliocruz", new User("12345", "Helio", "Ribeiro da Cruz", "uteste1@teste.com"));
-        userDao.save("ronancarmo", new User("12346", "Ronan", "Carmo Cruz", "uteste2@teste.com"));
-        userDao.save("marcosribeiro", new User("12347", "Marcos", "Mauricio Ribeiro", "uteste3@teste.com"));
-
-        //  userDao.saveLocation(geo,"heliocruz", new GeoLocation(-23.1572774, -45.7953402));
-        //  userDao.saveLocation(geo,"ronancarmo",new GeoLocation(-23.1572774, -45.7953402));
-        //  userDao.saveLocation(geo,"marcosribeiro",new GeoLocation(-23.1572774, -45.7953402));
-
-    }*/
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -138,6 +125,7 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
         // Handle action buttons
         switch(item.getItemId()) {
             case R.id.action_logout:
+                this.model.removeLocation(session.getUserRA(),session.getDriverMode());
                 this.session.logoutUser();
              return true;
             default:

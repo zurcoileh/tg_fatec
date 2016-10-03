@@ -16,6 +16,7 @@ import com.easy_ride.app.main.ERUListFragment;
 import com.easy_ride.app.model.ERDBModel;
 import com.easy_ride.app.model.MainModel;
 import com.easy_ride.app.model.User;
+import com.easy_ride.app.model.UserSessionManager;
 
 import java.util.ArrayList;
 
@@ -33,7 +34,8 @@ public class ERMainController extends ERController<MainModel>{
     private static final MessageTask<ERMainController> initializeTask = new MessageTask<ERMainController>() {
         public void run(ERMainController sender, Object[] data) {
             ERDBModel model = (ERDBModel)sender.getModel();
-            model.getAllResults();
+            UserSessionManager session = new UserSessionManager(sender.getActivity().getApplicationContext());
+            model.getAllResults(session);
             //model.notifyObservers();
         }
     };

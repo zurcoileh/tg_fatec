@@ -1,5 +1,8 @@
 package com.easy_ride.app.model;
 
+import com.google.android.gms.maps.model.Marker;
+
+import java.util.Map;
 import java.util.Observable;
 
 /**
@@ -10,8 +13,7 @@ import java.util.Observable;
 public class MainModel extends Observable implements PresentationModel{
 
     @Override
-    public void getAllResults() {
-
+    public void getAllResults(UserSessionManager session) {
     }
 
     @Override
