@@ -124,6 +124,7 @@ public class ERSettingsFragment extends Fragment implements ERView {
         if (session.getInvisMode() == 0) invis_mode.setChecked(false);
         else invis_mode.setChecked(true);
         dist_settings.setProgress(session.getDistPreferences());
+        dist_title.setText(session.getDistPreferences() + "Km");
 
 
         return view;

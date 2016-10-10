@@ -9,43 +9,60 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Texto Frase"
-        android:id="@+id/texto"
-        android:layout_below="@+id/dist"
-        android:layout_alignLeft="@+id/category"
-        android:layout_alignStart="@+id/category" />
+        android:id="@+id/email_list"
+        android:layout_alignLeft="@+id/name_list"
+        android:layout_marginTop="20dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:text="Texto Frase"
+        android:id="@+id/neigh_list"
+        android:layout_alignLeft="@+id/name_list"
+        android:layout_marginTop="40dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Titulo Frase"
-        android:id="@+id/category"
-        android:textSize="21sp"
+        android:id="@+id/name_list"
+        android:singleLine="true"
+        android:textSize="16sp"
         android:textColor="#f65034"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/profileImage"
-        android:layout_toEndOf="@+id/profileImage" />
+        android:layout_toRightOf="@+id/profileImageList"
+        android:layout_toEndOf="@+id/profileImageList"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Distance"
-        android:id="@+id/dist"
-        android:textSize="21sp"
+        android:id="@+id/dist_list"
+        android:textSize="16sp"
         android:textColor="#f65034"
-        android:layout_marginRight="46dp"
-        android:layout_marginEnd="46dp"
-        android:layout_alignTop="@+id/profileImage"
+        android:layout_marginRight="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_alignTop="@+id/email_list"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="2dp"
-        android:id="@+id/profileImage"
+        android:layout_marginTop="5dp"
+        android:id="@+id/profileImageList"
         android:cropToPadding="false"
         android:src="@drawable/personal"
         android:layout_alignParentTop="true"
@@ -53,6 +70,9 @@
         android:layout_alignParentLeft="true"
         android:maxHeight="70dp"
         android:maxWidth="148dp"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:focusable="false"
+        android:focusableInTouchMode="false"/>
+
 
 </RelativeLayout>

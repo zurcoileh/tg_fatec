@@ -13,121 +13,116 @@
         android:paddingLeft="24dp"
         android:paddingRight="24dp">
 
-        <ImageView android:src="@drawable/logo"
-            android:layout_width="wrap_content"
-            android:layout_height="52dp"
-            android:layout_marginBottom="24dp"
-            android:layout_gravity="center_horizontal" />
-
         <!--  Name Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:text="Nome:"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
             <EditText android:id="@+id/input_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:hint="Nome" />
-        </android.support.design.widget.TextInputLayout>
+
 
         <!-- Email Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:text="Email:"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
             <EditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
                 android:hint="Email" />
-        </android.support.design.widget.TextInputLayout>
 
         <!-- RA Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:text="RA:"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
             <EditText android:id="@+id/input_ra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="Registro Acadêmico" />
-        </android.support.design.widget.TextInputLayout>
 
         <!-- PHONE Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:text="Telefone:"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
             <EditText android:id="@+id/input_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="number"
                 android:hint="Prefixo + Telefone " />
-        </android.support.design.widget.TextInputLayout>
+
 
         <!--  End Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:text="Endereço:"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
             <EditText android:id="@+id/input_end"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:hint="Endereço" />
-        </android.support.design.widget.TextInputLayout>
 
 
         <!--  Bairro Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+            android:text="Bairro:"
+            android:textColor="@color/orange"
+            android:textStyle="bold"
+            android:layout_marginLeft="10dp"/>
+
             <EditText android:id="@+id/input_neigh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:hint="Bairro" />
-        </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->
-        <android.support.design.widget.TextInputLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp">
+
             <EditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
                 android:hint="Password"/>
-        </android.support.design.widget.TextInputLayout>
 
         <!-- Signup Button -->
-        <android.support.v7.widget.AppCompatButton
-            android:id="@+id/btn_signup"
+        <Button
+            android:id="@+id/btn_update"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
-            android:text="Criar conta"/>
-
-        <TextView android:id="@+id/link_login"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="24dp"
-            android:text="Já é usuário? Logar."
-            android:gravity="center"
-            android:textSize="16dip"/>
+            android:text="Atualizar"/>
 
     </LinearLayout>
 </ScrollView>

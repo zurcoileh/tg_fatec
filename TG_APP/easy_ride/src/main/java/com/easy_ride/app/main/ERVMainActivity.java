@@ -77,10 +77,6 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
             };
             mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-        if (savedInstanceState == null) {
-            selectItem(0);
-        }
-
 
         Firebase.setAndroidContext(this);
 
@@ -90,6 +86,11 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
         controller = new ERMainController(model, this);
 
         this.session = new UserSessionManager(getApplicationContext());
+
+        //open the map as default screen
+        if (savedInstanceState == null) {
+            selectItem(1);
+        }
 
     }
 
@@ -156,6 +157,8 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
                 controller.handle(ERMainController.Messages.Submit,Constants.OPEN_SEARCH_LIST);break;
             case Constants.OPEN_SETTINGS:
                 controller.handle(ERMainController.Messages.Submit, Constants.OPEN_SETTINGS);break;
+            case Constants.OPEN_USER_PROFILE:
+                controller.handle(ERMainController.Messages.Submit, Constants.OPEN_USER_PROFILE);break;
             default:break;
         }
         // update selected item and title, then close the drawer
@@ -180,6 +183,8 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
         super.onPostCreate(savedInstanceState);
         // Sync the toggle state after onRestoreInstanceState has occurred.
         mDrawerToggle.syncState();
+    //    controller.handle(ERMainController.Messages.Submit, Constants.OPEN_MAP_VIEW);
+    //    setTitle(mItemTitles[1]);
     }
 
     @Override

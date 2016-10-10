@@ -60,6 +60,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -107,14 +108,13 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
             this.map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngCenter, Constants.INITIAL_ZOOM_LEVEL));
             this.map.setOnCameraChangeListener(this);
 
-            map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+            map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
-                public void onInfoWindowClick(Marker marker) {
+                public boolean onMarkerClick(Marker marker) {
 
                     String email = marker.getSnippet();
 
-                    if(email != null) {
-
+                    if (email != null) {
 
                         LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mapFragment.getView().getLayoutParams();
                         params.weight = 85.0f;
@@ -127,6 +127,8 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
 
                         model.fillResult(email, marker);
                     }
+
+                    return false;
                 }
             });
         }
@@ -179,7 +181,7 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
                TextView result_dist = (TextView) view.findViewById(R.id.dist_result);
                Button btnSend = (Button) view.findViewById(R.id.btnSendMessage);
 
-               result_name.setText(u.getName()+" "+u.getLastname());
+               result_name.setText(u.getName());
                result_email.setText(u.getEmail());
                result_neihg.setText(u.getNeigh());
 
@@ -270,7 +272,7 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
         model.setMarkerInfoByKey(key, marker);
 
         //store key for list
-        this.session.setLocationKeys(this.session.getKeyLocations() + ";" + key);
+        this.session.setLocationKeys(this.session.getKeyLocations() + ";" + key + "," + location.latitude + "," + location.longitude);
     }
 
     @Override
@@ -281,9 +283,13 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
             marker.remove();
             this.markers.remove(key);
 
-            List  mykeys =  Arrays.asList(this.session.getKeyLocations().split(";"));
-            mykeys.remove(key);
-           // mykeys = list.toArray(new String[list.size()]);
+            List<String> mykeys = new LinkedList<String>(Arrays.asList(this.session.getKeyLocations().split(";")));
+            String to_remove ="";
+            for (String k : mykeys) {
+                String key_of =  k.split(",")[0];
+                if (key.equals(key_of))to_remove = k;
+            }
+            mykeys.remove(to_remove);
             this.session.setLocationKeys("");
             for (Object k : mykeys) this.session.setLocationKeys(this.session.getKeyLocations() + ";" + k);
 

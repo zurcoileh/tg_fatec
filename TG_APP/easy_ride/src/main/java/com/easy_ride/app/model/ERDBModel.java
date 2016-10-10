@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.Marker;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -30,16 +31,17 @@ public class ERDBModel extends MainModel{
     private Firebase refConn;
     private ArrayList<User> users;
     private String LOGIN_STATUS;
+    private String SIGNUP_STATUS;
 
     public ERDBModel(){
         this.refConn = new Firebase(Constants.FIREBASE_USER_REF);
         users = new ArrayList<>();
 
         //DUMMY DATA INITIALIZATION WITH RA
-    /*    this.refConn.child("1234567").setValue(new User("1234567", "Helio", "Ribeiro da Cruz", "helio_r_cruz@hotmail.com","12988083199","Rua Jordao M Ferreira,236","Jd Sao Dimas"));
-        this.refConn.child("1234565").setValue(new User("1234565", "Flavio", "Ribeiro da Cruz", "uteste1@teste.com", "1296885444","Av Rui Barbosa,500","Cidade Salvador - Jacarei"));
-        this.refConn.child("1234568").setValue(new User("1234568", "Ronan", "Carmo Cruz", "uteste2@teste.com","129886712169","Rua Jordao M Ferreira,236","Jd Sao Dimas"));
-        this.refConn.child("1234569").setValue(new User("1234569", "Marcos", "Mauricio Ribeiro", "uteste3@teste.com","12988653222","Rua Paraibuna 500","Centro"));
+   /*     this.refConn.child("1234567").setValue(new User("1234567", "Helio Ribeiro da Cruz", "helio_r_cruz@hotmail.com","12988083199","Rua Jordao M Ferreira,236","Jd Sao Dimas"));
+        this.refConn.child("1234565").setValue(new User("1234565", "Flavio Ribeiro da Cruz", "uteste1@teste.com", "1296885444","Av Rui Barbosa,500","Cidade Salvador - Jacarei"));
+        this.refConn.child("1234568").setValue(new User("1234568", "Ronan Carmo Cruz", "uteste2@teste.com","12988671216","Rua Jordao M Ferreira,236","Jd Sao Dimas"));
+        this.refConn.child("1234569").setValue(new User("1234569", "Marcos Mauricio Ribeiro", "uteste3@teste.com","12988653222","Rua Paraibuna 500","Centro"));
 
    /*     GeoFire refGeo = new GeoFire(new Firebase(Constants.FIREBASE_GEO_DRIVERS));
         refGeo.setLocation("1234565", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
@@ -65,16 +67,28 @@ public class ERDBModel extends MainModel{
         this.notifyObservers(LOGIN_STATUS);
     }
 
+    public void signUpStatus(){
+        this.setChanged();
+        this.notifyObservers(SIGNUP_STATUS);
+    }
+
     @Override
     public  void getAllResults(final UserSessionManager session) {
+
+        users = new ArrayList<>();
 
         refConn.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 for (DataSnapshot personSnapshot : snapshot.getChildren()) {
                     User user = personSnapshot.getValue(User.class);
-                    List mykeys = Arrays.asList(session.getKeyLocations().split(";"));
-                    for (Object k : mykeys) if (((String)k).equals(user.getRa())) users.add(user);
+                    List<String> mykeys = new LinkedList<String>(Arrays.asList(session.getKeyLocations().split(";")));
+                    for (String k : mykeys)
+                        if (k.split(",")[0].equals(user.getRa())) {
+                            GeoLocation location = new GeoLocation(Double.parseDouble(k.split(",")[1]), Double.parseDouble(k.split(",")[2]));
+                            user.setLoc(location);
+                            users.add(user);
+                        }
                 }
                 update();
             }
@@ -106,9 +120,106 @@ public class ERDBModel extends MainModel{
 
     }
 
+    public void verifyEmail(String email){
+        SIGNUP_STATUS = "VALID_EMAIL";
+        refConn.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    User user = (User) child.getValue(User.class);
+                    if (user != null) {
+                        SIGNUP_STATUS = "USER_EXIST";
+                        break;
+                    }
+                }
+                signUpStatus();
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+                SIGNUP_STATUS = "Error on SIGNUP: " + firebaseError;
+                signUpStatus();
+            }
+        });
+    }
+
+    public void signup(String email, String password)
+    {
+        final Firebase loginReff = new Firebase(Constants.FIREBASE_URL);
+
+        loginReff.createUser(email, password, new Firebase.ResultHandler() {
+            @Override
+            public void onSuccess() {
+                SIGNUP_STATUS = "OK";
+                signUpStatus();
+            }
+
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                SIGNUP_STATUS = "Error on SIGNUP: " + firebaseError;
+                signUpStatus();
+            }
+        });
+    }
+
+
+    public void getUserData(String email){
+        users = new ArrayList<>();
+        refConn.orderByChild("email").equalTo(email).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot child : dataSnapshot.getChildren()) {
+                    User user = child.getValue(User.class);
+                    if (user != null){
+                        users.add(user);
+                        break;
+                    }
+                }
+                update();
+            }
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+    }
+
+    public void storeUser(User user){
+        this.refConn = new Firebase(Constants.FIREBASE_USER_REF);
+        this.refConn.child(user.getRa()).setValue(user, new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                if (firebaseError != null) {
+                    SIGNUP_STATUS = "Error on SIGNUP: " + firebaseError;
+                    signUpStatus();
+                } else {
+                    SIGNUP_STATUS = "STORED";
+                    signUpStatus();
+                }
+            }
+        });
+    }
+
+    public void updateUser(final User user){
+        users = new ArrayList<>();
+        this.refConn = new Firebase(Constants.FIREBASE_USER_REF);
+        this.refConn.child(user.getRa()).setValue(user, new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError firebaseError, Firebase firebase) {
+                if (firebaseError != null) {
+                    users = null;
+                    update();
+                } else {
+                    users.add(user);
+                    update();
+                }
+            }
+        });
+    }
+
     public void login(final String email, String password, final UserSessionManager session){
 
         final Firebase loginReff = new Firebase(Constants.FIREBASE_URL);
+
 
         loginReff.authWithPassword(email, password,
                 new Firebase.AuthResultHandler() {
@@ -210,7 +321,6 @@ public class ERDBModel extends MainModel{
                 }
                 update();
             }
-
             @Override
             public void onCancelled(FirebaseError firebaseError) {
             }

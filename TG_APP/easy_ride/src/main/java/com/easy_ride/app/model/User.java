@@ -12,7 +12,6 @@ public class User {
 
     private String ra;
     private String name;
-    private String lastname;
     private String email;
     private GeoLocation location;
     private GeoLocation home;
@@ -23,22 +22,13 @@ public class User {
 
     public User(){}
 
-    public User(String ra, String name, String lastname, String email,String phone, String end, String neigh) {
+    public User(String ra, String name,String email,String phone, String end, String neigh) {
         this.ra = ra;
         this.name = name;
-        this.lastname = lastname;
         this.email = email;
         this.phone = phone;
         this.end = end;
         this.neigh = neigh;
-    }
-
-    public String getLastname() {
-        return lastname;
-    }
-
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
     }
 
     public String getEmail() {
@@ -71,11 +61,6 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    @Override
-    public String toString(){
-        return name+"  "+lastname;
     }
 
     public GeoLocation getLoc() {

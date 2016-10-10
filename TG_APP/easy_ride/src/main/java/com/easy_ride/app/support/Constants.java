@@ -1,8 +1,13 @@
 package com.easy_ride.app.support;
 
+import android.app.Activity;
+import android.location.Criteria;
 import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 
 import com.firebase.geofire.GeoLocation;
+import com.google.android.gms.maps.model.LatLng;
 
 import java.util.Map;
 
@@ -23,15 +28,21 @@ public class Constants {
     public static final int DATA_CHECK_CHANGED = 1;
     public static final int DATA_SUBMIT = 2;
 
+    public static final int OPEN_USER_PROFILE = 0;
     public static final int OPEN_MAP_VIEW = 1;
     public static final int OPEN_SEARCH_LIST = 2;
     public static final int OPEN_SETTINGS = 3;
 
-    public static final int  OPEN_DEFAULT = 0;
+    public static final int  OPEN_DEFAULT = -1;
     public static final String USER_DO_NOT_EXIST = "Usuário não existe";
     public static final String WRONG_PASSWORD = "Senha incorreta";
     public static final String CONNECT_FAIL = "Erro na conexão";
     public static final String UNKOWN = "Tente novamente mais tarde";
+
+    // The minimum distance to change Updates in meters
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 5; //
+    // The minimum time between updates in milliseconds
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 1 * 1;
 
 
     private static final String ON_SAVE_SUCESS = "added with success!";
@@ -58,5 +69,64 @@ public class Constants {
         locationB.setLongitude(LatLng2.longitude);
         distance = locationA.distanceTo(locationB);
         return distance;
+    }
+
+    public static LatLng getLocation(Activity activity, LocationListener listenner) {
+        LatLng result = null;
+        try {
+            LocationManager locationManager = (LocationManager) activity.getSystemService(activity.LOCATION_SERVICE);
+            //the default criteria
+            Criteria criteria = new Criteria();
+            String bestProvider = locationManager.getBestProvider(criteria, false);
+            Location location = locationManager.getLastKnownLocation(bestProvider);
+            result  =  new LatLng(location.getLatitude(), location.getLongitude());
+
+            // getting GPS status
+            boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+            // getting network status
+            boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+            if (!isGPSEnabled && !isNetworkEnabled) {
+                // no network provider is enabled
+                // locationManager.removeUpdates(this);
+
+            } else {
+                // this.canGetLocation = true;
+                // First get location from Network Provider
+                if (isNetworkEnabled) {
+                    locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,MIN_TIME_BW_UPDATES,MIN_DISTANCE_CHANGE_FOR_UPDATES, listenner);
+                    // Log.d("Network", "Network");
+                    if (locationManager != null) {
+                        location = locationManager
+                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        if (location != null) {
+                            result  =  new LatLng(location.getLatitude(), location.getLongitude());
+                        }
+                    }
+                }
+                // if GPS Enabled get lat/long using GPS Services
+                if (isGPSEnabled) {
+                    if (location == null) {
+                        locationManager.requestLocationUpdates(
+                                LocationManager.GPS_PROVIDER,
+                                MIN_TIME_BW_UPDATES,
+                                MIN_DISTANCE_CHANGE_FOR_UPDATES, listenner);
+                        // Log.d("GPS Enabled", "GPS Enabled");
+                        if (locationManager != null) {
+                            location = locationManager
+                                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            if (location != null) {
+                                result  =  new LatLng(location.getLatitude(), location.getLongitude());
+                            }
+                        }
+                    }
+                }
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return result;
     }
 }
