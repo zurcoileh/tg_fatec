@@ -19,16 +19,23 @@ public class User {
     private String phone;
     private String end;
     private String neigh;
+    private String city;
+    private String course;
+    private String period;
+
 
     public User(){}
 
-    public User(String ra, String name,String email,String phone, String end, String neigh) {
+    public User(String ra, String name,String email,String phone, String end, String neigh,String city, String course, String period) {
         this.ra = ra;
         this.name = name;
         this.email = email;
         this.phone = phone;
         this.end = end;
         this.neigh = neigh;
+        this.course = course;
+        this.period = period;
+        this.city = city;
     }
 
     public String getEmail() {
@@ -93,5 +100,29 @@ public class User {
 
     public void setNeigh(String neigh) {
         this.neigh = neigh;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public String getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(String period) {
+        this.period = period;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

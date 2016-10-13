@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/about"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@android:color/background_light">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <TextView
+        android:layout_marginTop="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="EASY RIDE APP - PROJETO CARONA SOLIDÁRIA FATEC SÃO JOSÉ DOS CAMPOS"
+        android:textColor="@color/orange"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="30dp"/>
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Protótipo desenvolvido como Trabalho de Graduação Curso Tecnológico em Banco de Dados "
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        android:singleLine="false"
+        android:layout_marginLeft="30dp"/>
+    <TextView
+        android:layout_marginTop="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="Contato: hribeirodacruz@gmail.com \n Tel: (12)988083199 "
+        android:singleLine="false"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:layout_marginLeft="30dp"/>
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginLeft="150dp"
+        android:layout_marginTop="10dp"
+        android:id="@+id/link_face"
+        android:cropToPadding="false"
+        android:src="@drawable/facebook"
+        android:maxHeight="70dp"
+        android:maxWidth="148dp"
+        android:adjustViewBounds="true" />
+
+</LinearLayout>

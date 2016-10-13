@@ -38,19 +38,16 @@ public class ERDBModel extends MainModel{
         users = new ArrayList<>();
 
         //DUMMY DATA INITIALIZATION WITH RA
-   /*     this.refConn.child("1234567").setValue(new User("1234567", "Helio Ribeiro da Cruz", "helio_r_cruz@hotmail.com","12988083199","Rua Jordao M Ferreira,236","Jd Sao Dimas"));
-        this.refConn.child("1234565").setValue(new User("1234565", "Flavio Ribeiro da Cruz", "uteste1@teste.com", "1296885444","Av Rui Barbosa,500","Cidade Salvador - Jacarei"));
-        this.refConn.child("1234568").setValue(new User("1234568", "Ronan Carmo Cruz", "uteste2@teste.com","12988671216","Rua Jordao M Ferreira,236","Jd Sao Dimas"));
-        this.refConn.child("1234569").setValue(new User("1234569", "Marcos Mauricio Ribeiro", "uteste3@teste.com","12988653222","Rua Paraibuna 500","Centro"));
+     //   this.refConn.child("1234567").setValue(new User("1234567", "Helio Ribeiro da Cruz", "helio_r_cruz@hotmail.com","12988083199","Rua Jordao M Ferreira,236","Jd Sao Dimas"));
+    /*    this.refConn.child("1234565").setValue(new User("1234565", "Flavio Ribeiro da Cruz", "uteste1@teste.com", "1296885444","Av Rui Barbosa,500","Cidade Salvador","Jacarei","Logistica","Noite"));
+        this.refConn.child("1234569").setValue(new User("1234569", "Marcos Mauricio Ribeiro", "uteste3@teste.com","12988653222","Rua Paraibuna 500","Centro","Sao Joseo dos Campos","Banco de Dados","Noite"));
 
-   /*     GeoFire refGeo = new GeoFire(new Firebase(Constants.FIREBASE_GEO_DRIVERS));
+        GeoFire refGeo = new GeoFire(new Firebase(Constants.FIREBASE_GEO_DRIVERS));
         refGeo.setLocation("1234565", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
-        refGeo.setLocation("1234568", new GeoLocation(-23.203144, -45.907928));//COLINAS
         refGeo.setLocation("1234569", new GeoLocation(-23.163525, -45.794087));//Unifesp
 
         refGeo = new GeoFire(new Firebase(Constants.FIREBASE_GEO_PASSENGERS));
         refGeo.setLocation("1234565", new GeoLocation(-23.217282, -45.893996)); //VALE SUL
-        refGeo.setLocation("1234568", new GeoLocation(-23.1621341,-45.7974797));//PQ TECNOLOGICO
         refGeo.setLocation("1234569", new GeoLocation(-23.145248, -45.795992));//EUG MELLO  */
 
 
@@ -170,13 +167,14 @@ public class ERDBModel extends MainModel{
             public void onDataChange(DataSnapshot dataSnapshot) {
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     User user = child.getValue(User.class);
-                    if (user != null){
+                    if (user != null) {
                         users.add(user);
                         break;
                     }
                 }
                 update();
             }
+
             @Override
             public void onCancelled(FirebaseError firebaseError) {
             }
@@ -266,16 +264,18 @@ public class ERDBModel extends MainModel{
     public void saveLocation(UserSessionManager session, LatLng location) {
         GeoFire refGeo = new GeoFire(new Firebase(Constants.GEO_REFF(session.getDriverMode())));
 
-        refGeo.setLocation(session.getUserRA(), new GeoLocation(location.latitude, location.longitude), new GeoFire.CompletionListener() {
-            @Override
-            public void onComplete(String key, FirebaseError error) {
-                if (error != null) {
-                    System.err.println("There was an error saving the location to GeoFire: " + error);
-                } else {
-                    System.out.println("Location saved on server successfully!");
+        if (session.validKey(session.getUserRA())) {
+            refGeo.setLocation(session.getUserRA(), new GeoLocation(location.latitude, location.longitude), new GeoFire.CompletionListener() {
+                @Override
+                public void onComplete(String key, FirebaseError error) {
+                    if (error != null) {
+                        System.err.println("There was an error saving the location to GeoFire: " + error);
+                    } else {
+                        System.out.println("Location saved on server successfully!");
+                    }
                 }
-            }
-        });
+            });
+        }
     }
 
     public void removeLocation(String ra, int mode){

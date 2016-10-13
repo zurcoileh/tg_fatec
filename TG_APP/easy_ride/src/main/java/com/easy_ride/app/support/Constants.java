@@ -20,9 +20,10 @@ public class Constants {
     public static final String FIREBASE_USER_REF = "https://demolocal.firebaseio.com/user_data";
     public static final String FIREBASE_GEO_DRIVERS = "https://demolocal.firebaseio.com/geo/drivers";
     public static final String FIREBASE_GEO_PASSENGERS = "https://demolocal.firebaseio.com/geo/passengers";
+    public static final String[] DIRECTIONS = {"NORTH","SOUTH","EAST","WEST"};
 
     public static final GeoLocation INITIAL_CENTER = new GeoLocation(-23.1572774, -45.7953402);
-    public static final int INITIAL_ZOOM_LEVEL = 14;
+    public static final int INITIAL_ZOOM_LEVEL = 16;
 
     public static final int DATA_INITIALIZE = 0;
     public static final int DATA_CHECK_CHANGED = 1;
@@ -32,6 +33,7 @@ public class Constants {
     public static final int OPEN_MAP_VIEW = 1;
     public static final int OPEN_SEARCH_LIST = 2;
     public static final int OPEN_SETTINGS = 3;
+    public static final int ABOUT_PAGE = 4;
 
     public static final int  OPEN_DEFAULT = -1;
     public static final String USER_DO_NOT_EXIST = "Usuário não existe";
@@ -128,5 +130,46 @@ public class Constants {
         }
 
         return result;
+    }
+
+    public static double getNewLocation(double xx_lat,double xx_long,double xx_distance,String Direction)
+    {
+
+        int equator_circumference=6371000;
+        int polar_circumference=6356800;
+
+        double m_per_deg_long =  360 / polar_circumference;
+        double rad_lat=(xx_lat* (Math.PI) / 180);
+        double m_per_deg_lat = 360 / ( Math.cos(rad_lat) * equator_circumference);
+
+        double deg_diff_long = xx_distance * m_per_deg_long;
+        double deg_diff_lat  = xx_distance * m_per_deg_lat;
+
+
+        double xx_north_lat = xx_lat + deg_diff_long;
+        //double xx_north_long= xx_long;
+        double xx_south_lat = xx_lat - deg_diff_long;
+        //double xx_south_long= xx_long;
+
+        //double xx_east_lat = xx_lat;
+        double xx_east_long= xx_long + deg_diff_lat;
+        //double xx_west_lat = xx_lat;
+        double xx_west_long= xx_long - deg_diff_lat;
+
+        if (Direction.toUpperCase().contains("NORTH")) {
+            return xx_north_lat;
+        } else if (Direction.toUpperCase().contains("SOUTH"))
+        {
+            return xx_south_lat;
+        } else if (Direction.toUpperCase().contains("EAST"))
+        {
+            return xx_east_long;
+        } else if (Direction.toUpperCase().contains("WEST"))
+        {
+            return xx_west_long;
+        }
+        else
+            return 0;
+
     }
 }

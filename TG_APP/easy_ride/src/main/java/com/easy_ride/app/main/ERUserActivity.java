@@ -41,6 +41,8 @@ public class ERUserActivity extends Fragment implements ERView {
     EditText _phoneText;
     EditText _endText;
     EditText _neighText;
+    EditText _courseText;
+    EditText _cityText;
     Button _updateButton;
     TextView _loginLink;
 
@@ -55,6 +57,8 @@ public class ERUserActivity extends Fragment implements ERView {
         _raText = (EditText) this.view.findViewById(R.id.input_ra);
         _phoneText = (EditText) this.view.findViewById(R.id.input_phone);
         _endText = (EditText) this.view.findViewById(R.id.input_end);
+        _cityText = (EditText) this.view.findViewById(R.id.input_city);
+        _courseText = (EditText) this.view.findViewById(R.id.input_course);
         _passwordText = (EditText) this.view.findViewById(R.id.input_password);
         _neighText = (EditText) this.view.findViewById(R.id.input_neigh);
         _updateButton = (Button) this.view.findViewById(R.id.btn_update);
@@ -97,7 +101,9 @@ public class ERUserActivity extends Fragment implements ERView {
         String phone = _phoneText.getText().toString();
         String end = _endText.getText().toString();
         String neigh = _neighText.getText().toString();
-        User u =  new User(ra,name,email,phone,end,neigh);
+        String course = _courseText.getText().toString();
+        String city = _cityText.getText().toString();
+        User u =  new User(ra,name,email,phone,end,neigh,city,course,"");
 
         model.updateUser(u);
     }
@@ -109,6 +115,8 @@ public class ERUserActivity extends Fragment implements ERView {
         _endText.setText(user.getEnd());
         _neighText.setText(user.getNeigh());
         _emailText.setText(user.getEmail());
+        _cityText.setText(user.getCity());
+        _courseText.setText(user.getCourse()+" "+user.getPeriod());
 
         if (!_updateButton.isEnabled()){
             Toast.makeText(getActivity().getApplicationContext(),"Cadastro atualizado com sucesso!", Toast.LENGTH_LONG).show();
@@ -129,6 +137,8 @@ public class ERUserActivity extends Fragment implements ERView {
         String phone = _phoneText.getText().toString();
         String end = _endText.getText().toString();
         String neigh = _neighText.getText().toString();
+        String course = _courseText.getText().toString();
+        String city = _cityText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3 ||  name.split(" ").length < 2) {
             _nameText.setError("nome e sobrenome!");
@@ -152,6 +162,20 @@ public class ERUserActivity extends Fragment implements ERView {
             _endText.setError(null);
         }
 
+        if ( city.isEmpty()) {
+            _cityText.setError("campo inválido!");
+            valid = false;
+        } else {
+            _cityText.setError(null);
+        }
+
+        if ( course.isEmpty()) {
+            _courseText.setError("campo inválido!");
+            valid = false;
+        } else {
+            _courseText.setError(null);
+        }
+
         if ( neigh.isEmpty() ) {
             _neighText.setError("campo inválido!");
             valid = false;
@@ -169,7 +193,7 @@ public class ERUserActivity extends Fragment implements ERView {
             ArrayList<User> uList = (ArrayList<User>) data;
             for (User u: uList) fillUserData(u);
         }else{
-            onUpdateFailed((String)data);
+            onUpdateFailed("Erro ao atualizar cadastro!");
         }
 
     }

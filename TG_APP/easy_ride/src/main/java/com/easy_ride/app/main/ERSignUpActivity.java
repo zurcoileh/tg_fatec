@@ -35,6 +35,8 @@ public class ERSignUpActivity extends Activity implements ERView {
     @InjectView(R.id.input_phone) EditText _phoneText;
     @InjectView(R.id.input_end) EditText _endText;
     @InjectView(R.id.input_neigh) EditText _neighText;
+    @InjectView(R.id.input_course) EditText _courseText;
+    @InjectView(R.id.input_city) EditText _cityText;
     @InjectView(R.id.btn_signup) Button _signupButton;
     @InjectView(R.id.link_login) TextView _loginLink;
 
@@ -80,26 +82,9 @@ public class ERSignUpActivity extends Activity implements ERView {
         progressDialog.setMessage("Creating Account...");
         progressDialog.show();
 
-        String name = _nameText.getText().toString();
         String email = _emailText.getText().toString();
-        String password = _passwordText.getText().toString();
-
-        // TODO: Implement your own signup logic here.
 
         model.verifyEmail(email);
-
-
-        /*
-        new android.os.Handler().postDelayed(
-                new Runnable() {
-                    public void run() {
-                        // On complete call either onSignupSuccess or onSignupFailed
-                        // depending on success
-                        onSignupSuccess();
-                        // onSignupFailed();
-                        progressDialog.dismiss();
-                    }
-                }, 3000); */
     }
 
     public void onSignupSuccess() {
@@ -112,7 +97,9 @@ public class ERSignUpActivity extends Activity implements ERView {
         String phone = _phoneText.getText().toString();
         String end = _endText.getText().toString();
         String neigh = _neighText.getText().toString();
-        User u =  new User(ra,name,email,phone,end,neigh);
+        String course = _courseText.getText().toString();
+        String city = _cityText.getText().toString();
+        User u =  new User(ra,name,email,phone,end,neigh,city,course,"");
 
         model.storeUser(u);
     }
@@ -133,6 +120,8 @@ public class ERSignUpActivity extends Activity implements ERView {
         String phone = _phoneText.getText().toString();
         String end = _endText.getText().toString();
         String neigh = _neighText.getText().toString();
+        String course = _courseText.getText().toString();
+        String city = _cityText.getText().toString();
 
         if (name.isEmpty() || name.length() < 3 ||  name.split(" ").length < 2) {
             _nameText.setError("nome e sobrenome!");
@@ -170,6 +159,20 @@ public class ERSignUpActivity extends Activity implements ERView {
             _neighText.setError(null);
         }
 
+        if ( city.isEmpty() ) {
+            _cityText.setError("campo inválido!");
+            valid = false;
+        } else {
+            _cityText.setError(null);
+        }
+
+        if ( course.isEmpty() ) {
+            _courseText.setError("campo inválido!");
+            valid = false;
+        } else {
+            _courseText.setError(null);
+        }
+
         if (email.isEmpty() || !android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()) {
             _emailText.setError("entre com email válido!");
             valid = false;
@@ -201,6 +204,7 @@ public class ERSignUpActivity extends Activity implements ERView {
             // Start the Signup activity
             Intent intent = new Intent(getApplicationContext(), ERLoginActivity.class);
             startActivityForResult(intent, REQUEST_LOGIN);
+            finish();
         }else if(((String) data).equals("USER_EXIST")){
             onSignupFailed("Email já cadastrado no sistema!");
         }else{

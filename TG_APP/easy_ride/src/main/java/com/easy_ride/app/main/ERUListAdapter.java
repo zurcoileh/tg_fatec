@@ -28,11 +28,13 @@ public class ERUListAdapter  extends BaseAdapter {
     protected ArrayList<User> users;
     protected boolean msg_option;
     protected LocationListener listener;
+    LayoutInflater inflater;
 
     public ERUListAdapter (Activity activity, ArrayList<User> users) {
         this.activity = activity;
         this.users = users;
         this.msg_option = false;
+        inflater = LayoutInflater.from(activity);
     }
 
     @Override
@@ -78,34 +80,43 @@ public class ERUListAdapter  extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-
-        View v = convertView;
+        MyViewHolder mViewHolder;
 
         if (convertView == null) {
-            LayoutInflater inf = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            v = inf.inflate(R.layout.activity_erulist_fragment, null);
+            convertView = inflater.inflate(R.layout.activity_erulist_fragment, parent, false);
+            mViewHolder = new MyViewHolder(convertView);
+            convertView.setTag(mViewHolder);
+        } else {
+            mViewHolder = (MyViewHolder) convertView.getTag();
         }
 
-        User dir = users.get(position);
+        User user = users.get(position);
 
-        TextView title = (TextView) v.findViewById(R.id.name_list);
-        title.setText(dir.getName());
-
-        TextView description = (TextView) v.findViewById(R.id.email_list);
-        description.setText(dir.getEmail());
-
-        TextView neigh = (TextView) v.findViewById(R.id.neigh_list);
-        neigh.setText(dir.getNeigh());
-
-        TextView dist = (TextView) v.findViewById(R.id.dist_list);
+        mViewHolder.title.setText(user.getName());
+        mViewHolder.description.setText(user.getEmail());
+        mViewHolder.neigh.setText(user.getNeigh() + " " + user.getCity());
+        mViewHolder.course.setText(user.getCourse() + " " + user.getPeriod());
         LatLng curr_location =  Constants.getLocation(activity,listener);
-        String result = String.format("%.2f", Constants.getDistance(new GeoLocation(curr_location.latitude, curr_location.longitude), dir.getLoc())/1000);
-        dist.setText(result+" Km");
 
-        ImageView imagen = (ImageView) v.findViewById(R.id.profileImage);
-       // imagen.setImageDrawable(dir.getImage());
+        Double dist =  Constants.getDistance(new GeoLocation(curr_location.latitude, curr_location.longitude), user.getLoc())/1000;
+        String result = dist >=  1.0 ? String.format("%.2f Km",dist) : String.format("%.2f metros",dist * 1000);
+        mViewHolder.dist.setText(result);
 
-        return v;
+        return convertView;
     }
 
+    private class MyViewHolder {
+        TextView title, description,neigh,course,dist;
+        ImageView imagen;
+
+        public MyViewHolder(View v) {
+            title = (TextView) v.findViewById(R.id.name_list);
+            description = (TextView) v.findViewById(R.id.email_list);
+            neigh = (TextView) v.findViewById(R.id.neigh_list);
+            course = (TextView) v.findViewById(R.id.course_list);
+            dist = (TextView) v.findViewById(R.id.dist_list);
+            imagen = (ImageView) v.findViewById(R.id.profileImage);
+
+        }
+    }
 }

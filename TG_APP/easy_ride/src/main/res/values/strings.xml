@@ -9,9 +9,7 @@
         <item>Mapa</item>
         <item>Busca</item>
         <item>Preferências</item>
-        <item android:id="@+id/action_search_list"
-            android:icon="@drawable/action_search"
-            android:title="@string/action_search_list" />
+        <item>Sobre</item>
     </string-array>
     <string name="drawer_open">Open navigation drawer</string>
     <string name="drawer_close">Close navigation drawer</string>

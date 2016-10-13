@@ -58,6 +58,19 @@
                 android:hint="Registro Acadêmico" />
         </android.support.design.widget.TextInputLayout>
 
+        <!-- Curso Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_course"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="Curso e Periodo" />
+        </android.support.design.widget.TextInputLayout>
+
         <!-- PHONE Label -->
         <android.support.design.widget.TextInputLayout
             android:layout_width="match_parent"
@@ -96,6 +109,19 @@
                 android:layout_height="wrap_content"
                 android:inputType="textCapWords"
                 android:hint="Bairro" />
+        </android.support.design.widget.TextInputLayout>
+
+        <!--  Cidade Label -->
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp">
+            <EditText android:id="@+id/input_city"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textCapWords"
+                android:hint="Cidade" />
         </android.support.design.widget.TextInputLayout>
 
         <!-- Password Label -->

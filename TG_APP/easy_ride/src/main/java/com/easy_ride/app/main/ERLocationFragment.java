@@ -64,6 +64,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
+import java.util.Random;
 
 public class ERLocationFragment extends Fragment implements GeoQueryEventListener, GoogleMap.OnCameraChangeListener,LocationListener,ERView {
 
@@ -108,6 +109,22 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
             this.map.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngCenter, Constants.INITIAL_ZOOM_LEVEL));
             this.map.setOnCameraChangeListener(this);
 
+            map.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                @Override
+                public void onInfoWindowClick(Marker marker) {
+                    marker.hideInfoWindow();
+
+                    LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) mapFragment.getView().getLayoutParams();
+                    params.weight = 100.0f;
+                    mapFragment.getView().setLayoutParams(params);
+
+                    RelativeLayout result = (RelativeLayout) view.findViewById(R.id.user_result);
+                    LinearLayout.LayoutParams params_2 = (LinearLayout.LayoutParams) result.getLayoutParams();
+                    params_2.weight = 0.0f;
+                    result.setLayoutParams(params_2);
+                }
+            });
+
             map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                 @Override
                 public boolean onMarkerClick(Marker marker) {
@@ -129,6 +146,7 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
                     }
 
                     return false;
+
                 }
             });
         }
@@ -177,16 +195,19 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
                final User u = uList.get(0);
                TextView result_name = (TextView) view.findViewById(R.id.name_result);
                TextView result_email = (TextView) view.findViewById(R.id.email_result);
-               TextView result_neihg = (TextView) view.findViewById(R.id.neigh_result);
+               TextView result_neigh = (TextView) view.findViewById(R.id.neigh_result);
                TextView result_dist = (TextView) view.findViewById(R.id.dist_result);
+               TextView result_course = (TextView) view.findViewById(R.id.course_result);
                Button btnSend = (Button) view.findViewById(R.id.btnSendMessage);
 
                result_name.setText(u.getName());
                result_email.setText(u.getEmail());
-               result_neihg.setText(u.getNeigh());
+               result_neigh.setText(u.getNeigh());
+               result_course.setText(u.getCourse() + " " + u.getPeriod());
 
-               String result = String.format("%.2f", Constants.getDistance(new GeoLocation(getLocation().latitude,getLocation().longitude),u.getLoc())/1000);
-               result_dist.setText(result+" Km");
+               Double dist =  Constants.getDistance(new GeoLocation(getLocation().latitude,getLocation().longitude),u.getLoc())/1000;
+               String result = dist >=  1.0 ? String.format("%.2f Km",dist) : String.format("%.2f metros",dist * 1000);
+               result_dist.setText(result);
 
                if (session.getInvisMode()==0) {
                    // add button listener
@@ -243,11 +264,7 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
         super.onStop();
         // remove all event listeners to stop updating in the background
         this.geoQuery.removeAllListeners();
-        this.locationManager.removeUpdates(this);
-        /*for (Marker marker: this.markers.values()) {
-            marker.remove();
-        }
-        this.markers.clear(); */
+       //  this.locationManager.removeUpdates(this);
     }
 
     @Override
@@ -255,24 +272,68 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
         super.onStart();
         // add an event listener to start updating locations again
         this.geoQuery.addGeoQueryEventListener(this);
+        //reset list keys
+        this.session.setLocationKeys("");
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        this.locationManager.removeUpdates(this);
+        this.geoQuery.removeAllListeners();
     }
 
     @Override
     public void onKeyEntered(String key, GeoLocation location) {
         // Add a new marker to the map
-        Marker marker =null;
-        if(session.getDriverMode() == 0){
-            marker = this.map.addMarker(new MarkerOptions().position(new LatLng(location.latitude, location.longitude))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.car_icon)));
-        }else{
-            marker = this.map.addMarker(new MarkerOptions().position(new LatLng(location.latitude, location.longitude))
-                    .icon(BitmapDescriptorFactory.fromResource(R.drawable.user_icon)));
+        Marker marker = this.markers.get(key);
+        if (marker != null){
+            marker.remove();
+            this.markers.remove(key);
         }
+        if (session.getDriverMode() == 0) {
+            marker = this.map.addMarker(new MarkerOptions().position(new LatLng(location.latitude, location.longitude))
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.car_icon)));
+        } else {
+            marker = this.map.addMarker(new MarkerOptions().position(new LatLng(location.latitude, location.longitude))
+                        .icon(BitmapDescriptorFactory.fromResource(R.drawable.user_icon)));
+        }
+
+        //check for markers in same or close position
+        checkAndMove(marker, true,0);
+
         this.markers.put(key, marker);
         model.setMarkerInfoByKey(key, marker);
 
         //store key for list
         this.session.setLocationKeys(this.session.getKeyLocations() + ";" + key + "," + location.latitude + "," + location.longitude);
+
+    }
+
+    public void checkAndMove(final Marker marker,boolean valid, int iter){
+        if(valid) {
+            iter ++;
+            for (Map.Entry<String, Marker> entry : markers.entrySet()) {
+                Marker m = entry.getValue();
+                valid = false;
+                double dist = (Constants.getDistance(new GeoLocation(m.getPosition().latitude, m.getPosition().longitude), new GeoLocation(marker.getPosition().latitude, marker.getPosition().longitude)));
+
+                if (dist < 3.0){
+                    valid = true;
+                    String direction = (Constants.DIRECTIONS[new Random().nextInt(Constants.DIRECTIONS.length)]);
+                    double new_position = Constants.getNewLocation(marker.getPosition().latitude, marker.getPosition().longitude,1.0, direction);
+                    if (direction == Constants.DIRECTIONS[0] || direction == Constants.DIRECTIONS[1]) {
+                        marker.setPosition(new LatLng(new_position, marker.getPosition().longitude));
+                    }
+                    if (direction == Constants.DIRECTIONS[2] || direction == Constants.DIRECTIONS[3]) {
+                        marker.setPosition(new LatLng(marker.getPosition().latitude, new_position));
+                    }
+                    break;
+                }
+            }
+            if(iter > 10) valid = false;
+            checkAndMove(marker,valid,iter);
+        }
     }
 
     @Override
@@ -301,8 +362,14 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
         // Move the marker
         Marker marker = this.markers.get(key);
         if (marker != null) {
+            this.markers.remove(key);
             this.animateMarkerTo(marker, location.latitude, location.longitude);
         }
+
+        //check for markers in same or close position
+        checkAndMove(marker, true,0);
+        this.markers.put(key, marker);
+
     }
 
     @Override
@@ -428,21 +495,26 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
         // Move the marker
         Marker marker = this.markers.get("current_user");
         if (marker != null) {
+            this.markers.remove("current_user");
             this.animateMarkerTo(marker, updated.latitude, updated.longitude);
+            //check for markers in same or close position
         }else{
-            Marker user_marker = this.map.addMarker(new MarkerOptions().position(updated).title("You are here!")
+             marker = this.map.addMarker(new MarkerOptions().position(updated).title("You are here!")
                     .icon(BitmapDescriptorFactory.fromResource(R.drawable.user_icon)));
 
-            this.markers.put("current_user", user_marker);
-
         }
+        checkAndMove(marker, true, 0);
+        this.markers.put("current_user", marker);
     }
 
     @Override
     public void onLocationChanged(Location location) {
         updateMarker(location);
         //update user location on geofire
-        if(session.getInvisMode()==0) {
+        // getting network status
+        boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+        if(isNetworkEnabled && session.getInvisMode()==0) {
             model.saveLocation(session, new LatLng(location.getLatitude(), location.getLongitude()));
         }
     }
@@ -472,12 +544,6 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
             ex.printStackTrace();
             Toast.makeText(getActivity(), "WhatsApp is not installed.", Toast.LENGTH_SHORT).show();
         }
-
-    /*    final Intent whatsappIntent = new Intent(Intent.ACTION_SENDTO,uri);
-        whatsappIntent.setPackage("com.whatsapp");
-        whatsappIntent.putExtra(Intent.EXTRA_TEXT, body);
-        whatsappIntent.setType("text/plain");
-        startActivity(whatsappIntent);  */
     }
 
     public void sendSMS(String phoneNo, String msg){

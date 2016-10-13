@@ -38,7 +38,6 @@ public class ERUListFragment extends Fragment implements LocationListener, ERVie
         model = new ERDBModel();
         model.addObserver(this);
         controller = new ERMainController(model, this.getActivity());
-        controller.handle(ERMainController.Messages.Initialize);
 
         return view;
     }
@@ -48,7 +47,19 @@ public class ERUListFragment extends Fragment implements LocationListener, ERVie
         super.onDetach();
         LocationManager locationManager = (LocationManager) getActivity().getSystemService(getActivity().LOCATION_SERVICE);
         locationManager.removeUpdates(this);
+    }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        LocationManager locationManager = (LocationManager) getActivity().getSystemService(getActivity().LOCATION_SERVICE);
+        locationManager.removeUpdates(this);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        controller.handle(ERMainController.Messages.Initialize);
     }
 
     @Override

@@ -1,6 +1,10 @@
 package com.easy_ride.app.main;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
+import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 
@@ -9,19 +13,26 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.app.easy_ride.R;
 import com.easy_ride.app.controller.ERMainController;
 import com.easy_ride.app.model.ERDBModel;
 import com.easy_ride.app.model.UserSessionManager;
 import com.easy_ride.app.support.Constants;
+import com.easy_ride.app.support.MyService;
 import com.firebase.client.Firebase;
 
 import java.util.Observable;
@@ -41,8 +52,11 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ermain);
+
+        startService(new Intent(getBaseContext(), MyService.class));
 
         //-------CONF MENU LATERAL E MENU BARRA TITULO-----------//
         mTitle = mDrawerTitle = getTitle();
@@ -52,7 +66,7 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
         // set a custom shadow that overlays the main content when the drawer opens
         mDrawerLayout.setDrawerShadow(R.drawable.drawer_shadow, GravityCompat.START);
         // set up the drawer's list view with items and click listener
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,R.layout.drawer_list_item, mItemTitles));
+        mDrawerList.setAdapter(new ArrayAdapter<String>(this, R.layout.drawer_list_item, mItemTitles));
         mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
         // enable ActionBar app icon to behave as action to toggle nav drawer
         getActionBar().setDisplayHomeAsUpEnabled(true);
@@ -146,11 +160,7 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
         // update the main content by replacing fragments
         switch(position){
             case Constants.OPEN_DEFAULT:
-              /*  Fragment fragment = new ResultViewFragment();
-                Bundle args = new Bundle();
-                args.putInt(ResultViewFragment.ARG_MENU_ITEM_NUMBER, position);
-                fragment.setArguments(args);*/ break;
-
+              break;
             case Constants.OPEN_MAP_VIEW:
                 controller.handle(ERMainController.Messages.Submit,Constants.OPEN_MAP_VIEW);break;
             case Constants.OPEN_SEARCH_LIST:
@@ -159,6 +169,11 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
                 controller.handle(ERMainController.Messages.Submit, Constants.OPEN_SETTINGS);break;
             case Constants.OPEN_USER_PROFILE:
                 controller.handle(ERMainController.Messages.Submit, Constants.OPEN_USER_PROFILE);break;
+            case Constants.ABOUT_PAGE:
+                Fragment about = new ResultViewFragment();
+                FragmentManager fragmentManager = this.getSupportFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_frame, about).commit();
+                break;
             default:break;
         }
         // update selected item and title, then close the drawer
@@ -188,6 +203,16 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        LocationManager locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+        boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+        if(isNetworkEnabled){
+            model.removeLocation(session.getUserRA(),session.getDriverMode());
+        }
+    }
+
+    @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
         // Pass any configuration change to the drawer toggls
@@ -198,26 +223,37 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
      * Fragment that appears in the "content_frame", shows a planet
      */
 
-    /*
+
     public static class ResultViewFragment extends Fragment {
         public static final String ARG_MENU_ITEM_NUMBER = "menu_item_number";
+        private ImageView link_face;
 
         public ResultViewFragment() {
             // Empty constructor required for fragment subclasses
         }
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_result_view, container, false);
-            int i = getArguments().getInt(ARG_MENU_ITEM_NUMBER);
-            String menu_item = getResources().getStringArray(R.array.menu_items_array)[i];
+            View rootView = inflater.inflate(R.layout.about, container, false);
 
-        //    int imageId = getResources().getIdentifier(menu_item.toLowerCase(Locale.getDefault()),
-                //    "drawable", getActivity().getPackageName());
-         //   ((ImageView) rootView.findViewById(R.id.image)).setImageResource(imageId);
-            getActivity().setTitle(menu_item);
+            link_face = (ImageView) rootView.findViewById(R.id.link_face);
+
+            link_face.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Finish the registration screen and return to the Login activity
+                    try {
+                        getActivity().getApplicationContext().getPackageManager()
+                                .getPackageInfo("com.facebook.katana", 0); //Checks if FB is even installed.
+                        Intent facebookIntent =  new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/1194391301")); //Trys to make intent with FB's URI
+                        startActivity(facebookIntent);
+                    } catch (Exception e) {
+                        Intent facebookIntent =  new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/zurcoileh")); //catches and opens a url to the desired page
+                        startActivity(facebookIntent);
+                    }
+                }
+            });
             return rootView;
         }
-    } */
+    }
 }

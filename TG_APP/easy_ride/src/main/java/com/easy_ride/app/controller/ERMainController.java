@@ -49,7 +49,6 @@ public class ERMainController extends ERController<MainModel>{
             ERDBModel model = (ERDBModel)sender.getModel();
             UserSessionManager session = new UserSessionManager(sender.getActivity().getApplicationContext());
             model.getAllResults(session);
-            //model.notifyObservers();
         }
     };
 

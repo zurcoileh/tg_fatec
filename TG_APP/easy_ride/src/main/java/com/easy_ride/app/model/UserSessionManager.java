@@ -108,7 +108,7 @@ public class UserSessionManager {
     }
 
     public int getDistPreferences() {
-        return this.preferences.getInt(KEY_DIST_PREF, 20);
+        return this.preferences.getInt(KEY_DIST_PREF, 1);
     }
 
     public String getUserEmail()  {return this.preferences.getString(KEY_EMAIL, "NOT_FOUND");}
@@ -120,6 +120,10 @@ public class UserSessionManager {
     }
     public int getInvisMode() {
         return this.preferences.getInt(KEY_INVIS_MODE,0);
+    }
+
+    public boolean validKey(String KEY){
+        return KEY.equals("NOT_FOUND") ? false : true;
     }
 
 
