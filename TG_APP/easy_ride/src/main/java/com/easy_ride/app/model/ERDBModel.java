@@ -22,6 +22,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 /**
  * Created by Helio on 5/1/2016.
@@ -39,16 +40,43 @@ public class ERDBModel extends MainModel{
 
         //DUMMY DATA INITIALIZATION WITH RA
      //   this.refConn.child("1234567").setValue(new User("1234567", "Helio Ribeiro da Cruz", "helio_r_cruz@hotmail.com","12988083199","Rua Jordao M Ferreira,236","Jd Sao Dimas"));
-    /*    this.refConn.child("1234565").setValue(new User("1234565", "Flavio Ribeiro da Cruz", "uteste1@teste.com", "1296885444","Av Rui Barbosa,500","Cidade Salvador","Jacarei","Logistica","Noite"));
-        this.refConn.child("1234569").setValue(new User("1234569", "Marcos Mauricio Ribeiro", "uteste3@teste.com","12988653222","Rua Paraibuna 500","Centro","Sao Joseo dos Campos","Banco de Dados","Noite"));
+    //    this.refConn.child("1234565").setValue(new User("1234565", "Flavio Ribeiro da Cruz", "uteste1@teste.com", "1296885444","Av Rui Barbosa,500","Cidade Salvador","Jacarei","Logistica","Noite"));
+    //    this.refConn.child("1234569").setValue(new User("1234569", "Marcos Mauricio Ribeiro", "uteste3@teste.com","12988653222","Rua Paraibuna 500","Centro","Sao Joseo dos Campos","Banco de Dados","Noite"));
 
-        GeoFire refGeo = new GeoFire(new Firebase(Constants.FIREBASE_GEO_DRIVERS));
-        refGeo.setLocation("1234565", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
-        refGeo.setLocation("1234569", new GeoLocation(-23.163525, -45.794087));//Unifesp
+    /*    GeoFire refGeo = new GeoFire(new Firebase(Constants.FIREBASE_GEO_DRIVERS));
+        refGeo.setLocation("1234569", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
 
-        refGeo = new GeoFire(new Firebase(Constants.FIREBASE_GEO_PASSENGERS));
-        refGeo.setLocation("1234565", new GeoLocation(-23.217282, -45.893996)); //VALE SUL
-        refGeo.setLocation("1234569", new GeoLocation(-23.145248, -45.795992));//EUG MELLO  */
+        refGeo.setLocation("123457", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
+        refGeo.setLocation("123458", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
+        refGeo.setLocation("123459", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
+        refGeo.setLocation("123450", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
+        refGeo.setLocation("123451", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
+        refGeo.setLocation("123452", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
+        refGeo.setLocation("123453", new GeoLocation(-23.200423, -45.892367)); //PQ SANTOS DUMONT
+
+        GeoFire refGeo = new GeoFire(new Firebase(Constants.FIREBASE_GEO_PASSENGERS));
+        double lat = -23.1967997;
+        double lon = -45.8873514;
+        for (int i=0;i<100;i++) {
+
+            if (i > 10){
+             /*   String direction = (Constants.DIRECTIONS[new Random().nextInt(Constants.DIRECTIONS.length)]);
+                double new_position = Constants.getNewLocation(lat,lon,2.0, direction);
+                if (direction == Constants.DIRECTIONS[0] || direction == Constants.DIRECTIONS[1]) {
+                    refGeo.setLocation("12345" + String.valueOf(i), new GeoLocation(new_position,lon));
+                    lat = new_position;
+                }
+                if (direction == Constants.DIRECTIONS[2] || direction == Constants.DIRECTIONS[3]) {
+                    refGeo.setLocation("12345" + String.valueOf(i), new GeoLocation(lon,new_position));
+                    lon = new_position;
+                }
+                refGeo.removeLocation("12345" + String.valueOf(i));
+
+
+            }else{
+                //refGeo.setLocation("12345" + String.valueOf(i), new GeoLocation(-23.1967997, -45.8873514));
+            }
+        }    */
 
 
     }
@@ -217,13 +245,10 @@ public class ERDBModel extends MainModel{
     public void login(final String email, String password, final UserSessionManager session){
 
         final Firebase loginReff = new Firebase(Constants.FIREBASE_URL);
-
-
         loginReff.authWithPassword(email, password,
                 new Firebase.AuthResultHandler() {
                     @Override
                     public void onAuthenticated(AuthData authData) {
-                        // Authentication just completed successfully :)
                         Map<String, String> map = new HashMap<String, String>();
                         map.put("provider", authData.getProvider());
                         if (authData.getProviderData().containsKey("email")) {
@@ -234,6 +259,7 @@ public class ERDBModel extends MainModel{
                         storeRASession(authData.getProviderData().get("email").toString(), session);
                         session.configDriverMode(0);
                         session.configInvisMode(0);
+                        session.configDistPreferences(1);
                         loginReff.child("users").child(authData.getUid()).setValue(map);
                         LOGIN_STATUS = "OK";
                         loginStatus();
@@ -241,7 +267,6 @@ public class ERDBModel extends MainModel{
 
                     @Override
                     public void onAuthenticationError(FirebaseError error) {
-                        // Something went wrong :(
                         switch (error.getCode()) {
                             case FirebaseError.USER_DOES_NOT_EXIST:
                                 LOGIN_STATUS = Constants.USER_DO_NOT_EXIST;
@@ -314,7 +339,7 @@ public class ERDBModel extends MainModel{
                 for (DataSnapshot child : dataSnapshot.getChildren()) {
                     User user = (User) child.getValue(User.class);
                     if (user != null){
-                        user.setLoc(new GeoLocation(marker.getPosition().latitude,marker.getPosition().longitude));
+                        user.setLoc(new GeoLocation(marker.getPosition().latitude, marker.getPosition().longitude));
                         users.add(user);
                         break;
                     }
@@ -323,6 +348,32 @@ public class ERDBModel extends MainModel{
             }
             @Override
             public void onCancelled(FirebaseError firebaseError) {
+            }
+        });
+    }
+
+    public void removeKeyOnDisconnect(final String ra){
+        // remove their GeoFire entry
+        Firebase refDrivers = new Firebase(Constants.FIREBASE_GEO_DRIVERS);
+        refDrivers.child(ra).onDisconnect().removeValue(new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError error, Firebase firebase) {
+                if (error != null) {
+                    Log.d("ERROR DISCONNECT", "could not establish onDisconnect event:" + error.getMessage());
+                }else{
+                    Log.d("NETWORK", "MONITORING_DRIVER KEY" + ra);
+                }
+            }
+        });
+        Firebase refPass = new Firebase(Constants.FIREBASE_GEO_PASSENGERS);
+        refPass.child(ra).onDisconnect().removeValue(new Firebase.CompletionListener() {
+            @Override
+            public void onComplete(FirebaseError error, Firebase firebase) {
+                if (error != null) {
+                    Log.d("ERROR DISCONNECT", "could not establish onDisconnect event:" + error.getMessage());
+                } else {
+                    Log.d("NETWORK","MONITORING_PASSENGER KEY" + ra);
+                }
             }
         });
     }

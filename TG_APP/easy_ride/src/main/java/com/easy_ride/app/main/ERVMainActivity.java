@@ -101,6 +101,8 @@ public class ERVMainActivity extends FragmentActivity implements ERView {
 
         this.session = new UserSessionManager(getApplicationContext());
 
+       // model.removeKeyOnDisconnect(session.getUserRA());
+
         //open the map as default screen
         if (savedInstanceState == null) {
             selectItem(1);

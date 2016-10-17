@@ -101,7 +101,7 @@ public class ERLoginActivity extends Activity implements ERView {
         Log.d(TAG, "Login");
 
         if (!validate()) {
-            onLoginFailed("");
+            onLoginFailed("Campo inválido");
             return;
         }
 
@@ -110,7 +110,7 @@ public class ERLoginActivity extends Activity implements ERView {
         progressDialog = new ProgressDialog(ERLoginActivity.this,
                 R.style.AppTheme_Dark);
         progressDialog.setIndeterminate(true);
-        progressDialog.setMessage("Authenticating...");
+        progressDialog.setMessage("Autenticando...");
         progressDialog.show();
 
         String email = _emailText.getText().toString();

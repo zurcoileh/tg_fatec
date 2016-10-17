@@ -14,7 +14,6 @@ public class User {
     private String name;
     private String email;
     private GeoLocation location;
-    private GeoLocation home;
     private int type_user;
     private String phone;
     private String end;

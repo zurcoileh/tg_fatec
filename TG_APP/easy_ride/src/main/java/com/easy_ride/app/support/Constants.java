@@ -20,6 +20,8 @@ public class Constants {
     public static final String FIREBASE_USER_REF = "https://demolocal.firebaseio.com/user_data";
     public static final String FIREBASE_GEO_DRIVERS = "https://demolocal.firebaseio.com/geo/drivers";
     public static final String FIREBASE_GEO_PASSENGERS = "https://demolocal.firebaseio.com/geo/passengers";
+
+
     public static final String[] DIRECTIONS = {"NORTH","SOUTH","EAST","WEST"};
 
     public static final GeoLocation INITIAL_CENTER = new GeoLocation(-23.1572774, -45.7953402);

@@ -59,7 +59,7 @@ public class ERSettingsFragment extends Fragment implements ERView {
         dist_title = (TextView) this.view.findViewById(R.id.dist_title);
 
         dist_settings.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progressChanged = 0;
+            int progressChanged = 1;
 
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 progressChanged = progress;
@@ -67,12 +67,11 @@ public class ERSettingsFragment extends Fragment implements ERView {
             }
 
             public void onStartTrackingTouch(SeekBar seekBar) {
-                // TODO Auto-generated method stub
+
             }
 
             public void onStopTrackingTouch(SeekBar seekBar) {
                 session.configDistPreferences(progressChanged);
-              //  Toast.makeText(view.getContext().getApplicationContext(),"Configurações atualizadas!",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -83,13 +82,10 @@ public class ERSettingsFragment extends Fragment implements ERView {
             public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
                 //remove location from query
                 model.removeLocation(session.getUserRA(),session.getDriverMode());
-
                 if(isChecked)
                     session.configDriverMode(1);
                 else
                     session.configDriverMode(0);
-
-             //   Toast.makeText(view.getContext().getApplicationContext(),"Configurações atualizadas!",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -104,8 +100,6 @@ public class ERSettingsFragment extends Fragment implements ERView {
                 }
                 else
                     session.configInvisMode(0);
-
-               // Toast.makeText(view.getContext().getApplicationContext(),"Configurações atualizadas!",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -115,6 +109,8 @@ public class ERSettingsFragment extends Fragment implements ERView {
         // Set up ListView
         model = new ERDBModel();
         model.addObserver(this);
+
+
         controller = new ERMainController(model, this.getActivity());
         controller.handle(ERMainController.Messages.Initialize);
 

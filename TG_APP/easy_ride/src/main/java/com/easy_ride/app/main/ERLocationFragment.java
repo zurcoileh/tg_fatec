@@ -2,6 +2,7 @@ package com.easy_ride.app.main;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
@@ -78,6 +79,7 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
     private UserSessionManager session;
     private LocationManager locationManager;
     private static boolean msg_option = false;
+    private ProgressDialog progressDialog = null;
     // The minimum distance to change Updates in meters
     private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 5; //
     // The minimum time between updates in milliseconds
@@ -176,7 +178,8 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
         }
 
         // radius in km
-        this.geoQuery = this.geoFire.queryAtLocation(new GeoLocation(getLocation().latitude, getLocation().longitude),session.getDistPreferences() > 0 ? session.getDistPreferences() : 1);
+        this.geoQuery = this.geoFire.queryAtLocation(new GeoLocation(getLocation().latitude, getLocation().longitude),
+                                                        session.getDistPreferences() > 0 ? session.getDistPreferences() : 1);
 
         this.markers.put("current_user", user_marker);
 
@@ -229,7 +232,7 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
                            msg_opt.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                                @Override
                                public void onCheckedChanged(CompoundButton arg0, boolean isChecked) {
-                                   msg_option = isChecked ? true : false;
+                                   msg_option = isChecked;
                                }
                            });
 
@@ -238,9 +241,7 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
                            btn_send.setOnClickListener(new View.OnClickListener() {
                                @Override
                                public void onClick(View v) {
-                                   if (msg_option)
-                                       sendWhats(u.getPhone(), String.valueOf(text_msg.getText()));
-                                   else sendSMS(u.getPhone(), String.valueOf(text_msg.getText()));
+                                   sendMessage(u.getPhone(), String.valueOf(text_msg.getText()),msg_option);
                                }
                            });
                            // if button is clicked, close the custom dialog
@@ -270,6 +271,14 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
     @Override
     public void onStart() {
         super.onStart();
+
+               progressDialog = new ProgressDialog(getActivity(),
+                       R.style.AppTheme_Dark);
+               progressDialog.setIndeterminate(true);
+               progressDialog.setMessage("Aguarde...");
+
+               progressDialog.show();
+
         // add an event listener to start updating locations again
         this.geoQuery.addGeoQueryEventListener(this);
         //reset list keys
@@ -285,6 +294,7 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
 
     @Override
     public void onKeyEntered(String key, GeoLocation location) {
+
         // Add a new marker to the map
         Marker marker = this.markers.get(key);
         if (marker != null){
@@ -307,6 +317,8 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
 
         //store key for list
         this.session.setLocationKeys(this.session.getKeyLocations() + ";" + key + "," + location.latitude + "," + location.longitude);
+
+      //  progressDialog.dismiss();
 
     }
 
@@ -374,6 +386,7 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
 
     @Override
     public void onGeoQueryReady() {
+        progressDialog.dismiss();
     }
 
     @Override
@@ -438,44 +451,32 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
             String bestProvider = locationManager.getBestProvider(criteria, false);
             Location location = locationManager.getLastKnownLocation(bestProvider);
             result  =  new LatLng(location.getLatitude(), location.getLongitude());
-
             // getting GPS status
             boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
             // getting network status
             boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
             if (!isGPSEnabled && !isNetworkEnabled) {
-                // no network provider is enabled
                // locationManager.removeUpdates(this);
-
             } else {
-               // this.canGetLocation = true;
                 // First get location from Network Provider
                 if (isNetworkEnabled) {
                     locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,MIN_TIME_BW_UPDATES,MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                   // Log.d("Network", "Network");
                     if (locationManager != null) {
-                        location = locationManager
-                                .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                        if (location != null) {
+                        location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                        if (location != null)
                             result  =  new LatLng(location.getLatitude(), location.getLongitude());
-                        }
                     }
                 }
                 // if GPS Enabled get lat/long using GPS Services
                 if (isGPSEnabled) {
                     if (location == null) {
-                        locationManager.requestLocationUpdates(
-                                LocationManager.GPS_PROVIDER,
-                                MIN_TIME_BW_UPDATES,
-                                MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
-                       // Log.d("GPS Enabled", "GPS Enabled");
+                        locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, MIN_TIME_BW_UPDATES, MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
+
                         if (locationManager != null) {
-                            location = locationManager
-                                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-                            if (location != null) {
+                            location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                            if (location != null)
                                 result  =  new LatLng(location.getLatitude(), location.getLongitude());
-                            }
                         }
                     }
                 }
@@ -484,7 +485,6 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         return result;
     }
 
@@ -509,6 +509,7 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
 
     @Override
     public void onLocationChanged(Location location) {
+
         updateMarker(location);
         //update user location on geofire
         // getting network status
@@ -531,36 +532,21 @@ public class ERLocationFragment extends Fragment implements GeoQueryEventListene
     public void onProviderDisabled(String provider) {
     }
 
-    public void sendWhats(String subject,String body) {
-
-        Uri uri = Uri.parse("smsto:" + subject);
-        Intent i = new Intent(Intent.ACTION_SENDTO, uri);
-        i.putExtra("sms_body", "smsText");
-        i.setPackage("com.whatsapp");
+    public void sendMessage(String phoneNo, String msg, boolean opt){
         try {
-            getActivity().startActivity(i);
-
-        } catch (ActivityNotFoundException ex) {
-            ex.printStackTrace();
-            Toast.makeText(getActivity(), "WhatsApp is not installed.", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void sendSMS(String phoneNo, String msg){
-        try {
-        //    SmsManager smsManager = SmsManager.getDefault();
-         //   smsManager.sendTextMessage(phoneNo, null, msg, null, null);
 
             Uri uri = Uri.parse("smsto:"+phoneNo);
             Intent it = new Intent(Intent.ACTION_SENDTO, uri);
             it.putExtra("sms_body", msg);
+            if(opt)  it.setPackage("com.whatsapp");
             getActivity().startActivity(it);
 
         } catch (Exception ex) {
-            Toast.makeText(getActivity().getApplicationContext(),ex.getMessage().toString(),
+            Toast.makeText(getActivity().getApplicationContext(),ex.getMessage(),
                     Toast.LENGTH_LONG).show();
             ex.printStackTrace();
         }
+
     }
 
 }

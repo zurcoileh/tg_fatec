@@ -35,6 +35,10 @@ public class UserSessionManager {
         this.editor = this.preferences.edit();
     }
 
+    public boolean isUserLogged() {
+        return this.preferences.getBoolean(IS_USER_LOGGED,false);
+    }
+
     public void createUserSession(String email) {
 
         this.editor.putBoolean(IS_USER_LOGGED, true);
@@ -74,9 +78,6 @@ public class UserSessionManager {
 
     }
 
-    public boolean isUserLogged() {
-        return this.preferences.getBoolean(IS_USER_LOGGED,false);
-    }
 
     public void setSessionName(String key){
         this.editor.putString(KEY_NAME, key);

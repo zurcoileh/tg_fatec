@@ -1,9 +1,13 @@
 package com.easy_ride.app.support;
 
 import android.app.Service;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.location.LocationManager;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -20,6 +24,7 @@ public class MyService extends Service {
 
     private ERDBModel model;
     private UserSessionManager session;
+    BroadcastReceiver receiver;
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
@@ -39,11 +44,41 @@ public class MyService extends Service {
         //------- CONF MVP ---------//
         model = new ERDBModel();
         this.session = new UserSessionManager(getApplicationContext());
+
+        receiver = new BroadcastReceiver() {
+            @Override
+            public void onReceive(Context context, Intent intent) {
+
+                ConnectivityManager cm =
+                        (ConnectivityManager)context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+                NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+                boolean isConnected = activeNetwork != null &&
+                        activeNetwork.isConnectedOrConnecting();
+
+                if (isConnected){
+                    model.removeKeyOnDisconnect(session.getUserRA());
+                    Log.d("SERVICE NETWORK", "MONITORING KEY ON DISCONNECT");
+                }
+
+            }
+        };
+
+        IntentFilter filter = new IntentFilter("android.net.conn.CONNECTIVITY_CHANGE");
+        registerReceiver(receiver, filter);
+    /*
+        <intent-filter>
+        ...
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE"/>
+        </intent-filter> */
+
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
+        unregisterReceiver(receiver);
     }
 
     public void onTaskRemoved(Intent rootIntent) {
